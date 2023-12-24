@@ -1,0 +1,14 @@
+.bg {
+    background-color: #0000007a;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 2px
+
+}

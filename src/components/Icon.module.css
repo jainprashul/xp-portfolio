@@ -1,0 +1,16 @@
+.icon {
+    --bg : transparent;
+    margin: 0 .5rem ;
+    fill: currentColor;
+    background-color: var(--bg);
+    padding: 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    &:hover {
+        --bg : #00000039;
+        /* backdrop-filter: blur(10px); */
+    }
+}
+
+
