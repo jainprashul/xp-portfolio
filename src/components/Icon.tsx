@@ -1,15 +1,17 @@
 import style from './Icon.module.css';
 
 type Props = {
-    name: string;
-    size?: number;
-    color?: string;
+  icon: string;
+  size?: number;
+  color?: string;
+  title?: string;
 }
 
-const Icon = ({ name , size = 40}: Props) => {
+const Icon = ({ icon: name, size = 40, title }: Props) => {
   return (
     <div className={style.icon}>
-        <img src={name} alt="icon" width={size} height={size} />    
+      <img src={name} alt="icon" width={size} height={size} />
+      <span>{title}</span>
     </div>
   )
 }

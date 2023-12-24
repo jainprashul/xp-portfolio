@@ -6,9 +6,14 @@
     padding: 6px;
     border-radius: 10px;
     cursor: pointer;
-    
+    transition: background-color 0.25s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &:hover {
-        --bg : #00000039;
+        --bg : #ffffff39;
         /* backdrop-filter: blur(10px); */
     }
 }

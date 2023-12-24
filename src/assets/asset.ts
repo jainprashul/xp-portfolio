@@ -22,6 +22,10 @@ import react from './icons/react.svg';
 import ts from './icons/ts.svg';
 import vite from './icons/vite.svg';
 import python from './icons/python.svg';
+import sun from './icons/sun.svg';
+
+import fullscreen from './icons/fullscreen.svg';
+
 
 
 // export const calender = "https://img.icons8.com/?size=48&id=WpQIVxfhhzqt&format=png"
@@ -50,6 +54,9 @@ export {
     react,
     ts,
     vite,
-    python
+    python,
+    fullscreen,
+    sun
+
 
 }
