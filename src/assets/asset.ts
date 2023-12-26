@@ -25,6 +25,7 @@ import python from './icons/python.svg';
 import sun from './icons/sun.svg';
 
 import fullscreen from './icons/fullscreen.svg';
+import shortcut from './icons/shortcut.svg';
 
 
 
@@ -56,7 +57,8 @@ export {
     vite,
     python,
     fullscreen,
-    sun
+    sun,
+    shortcut
 
 
 }

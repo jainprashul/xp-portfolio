@@ -1,6 +1,6 @@
 import style from './BottomNav.module.css';
-import Icon from './Icon';
-import { calender, info, mail, project, sun, winMenu } from '../assets/asset';
+import Icon from './shared/Icon';
+import { calender, edge, info, mail, sun, winMenu } from '../assets/asset';
 import React from 'react';
 
 const BottomNav = () => {
@@ -8,11 +8,15 @@ const BottomNav = () => {
     <div className={style.bg}>
       <WeatherBox />
       <div className={style.navIcons}>
-        <Icon icon={winMenu} />
-        <Icon icon={project} />
-        <Icon icon={mail} />
-        <Icon icon={calender} />
-        <Icon icon={info} />
+        <Icon icon={winMenu} tooltip='Show Menu'  />
+        <Icon icon={edge} isShortcut tooltip='Open Google' />
+        <Icon icon={mail} isShortcut tooltip='Send me an Email' onClick={() => {
+          window.open('mailto:jainprashul@gmail.com')
+        }} />
+        <Icon icon={calender} tooltip='Schedule Meeting' onClick={() => {
+          window.open('https://calendly.com/jainprashul/30min')
+        }} />
+        <Icon icon={info} tooltip='About Me' />
       </div>
       <DateBox />
     </div>

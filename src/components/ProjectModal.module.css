@@ -1,0 +1,71 @@
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-gap: 1rem;
+
+}
+
+.projectCard {
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  
+    .icon {
+      width: 4rem;
+      height: 4rem;
+      background-color: #333;
+      border-radius: 10px;
+    }
+
+    .projectcard__title {
+      font-weight: 600;
+    }
+
+    .projectcard__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: .4rem;
+      span {
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
+        background-color: var(--surface-2);
+        font-size: 0.7rem;
+        border-radius: 5px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+      
+    }  
+    
+    .projectcard__description {
+      font-size: 0.8rem;
+      color: #939393;
+    }
+    .projectcard__image {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+  }
+
+  .projectMeta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: .5rem;    
+  }
+  
+
+/* Path: src/components/ProjectModel.module.css */

@@ -1,33 +1,51 @@
-import Icon from './Icon'
+import Icon from './shared/Icon'
 import { fullscreen, github, linkedin, pdf, project, steam } from '../assets/asset'
 import style from './Desktop.module.css'
+import ProjectModal from './ProjectModal'
+import { useState } from 'react'
 
 const DesktopNav = () => {
   return (
     <div className={style.iconlist}>
-        <div onClick={()=> {
-          window.open('https://github.com/jainprashul')
-        }}> <Icon icon={github} title='Github' size={60} />
-        </div>
-        <div onClick={()=> {
-          window.open('./resume.pdf')
-        }}><Icon icon={pdf} title='Resume' size={60} /></div>
-        <Icon icon={project} title='Projects' size={60} />
+      <Icon icon={github} title='Github' size={60} isShortcut onClick={() => {
+        window.open('https://github.com/jainprashul')
+      }} />
 
-        <div onClick={()=> {
-          window.open('https://www.linkedin.com/in/jainprashul/')
-        }}> <Icon icon={linkedin} title='Linkedin' size={60} />
-        </div>
+      <Icon icon={pdf} title='Resume' size={60} isShortcut onClick={() => {
+        window.open('./resume.pdf')
+      }} />
 
-        <div onClick={()=> {
-          window.document.body.requestFullscreen();
-        }}> <Icon icon={fullscreen} title='Fullscreen' size={60} />
-        </div>
+      <Project />
 
-        
-        <Icon icon={steam} title='Steam' size={60} />
+      <Icon icon={linkedin} title='Linkedin' size={60} isShortcut onClick={() => {
+        window.open('https://www.linkedin.com/in/jainprashul/')
+      }} />
+
+
+      <Icon icon={fullscreen} title='Fullscreen' size={60} onClick={() => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen()
+        } else {
+          document.documentElement.requestFullscreen()
+        }
+      }} />
+
+      <Icon icon={steam} title='Steam' size={60} />
     </div>
   )
 }
 
 export default DesktopNav
+
+
+function Project() {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Icon icon={project} title='Projects' size={60} onClick={() => {
+        setOpen(true)
+      }} />
+      <ProjectModal open={open} setOpen={setOpen} />
+    </>
+  )
+}

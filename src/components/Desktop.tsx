@@ -1,6 +1,7 @@
 import DesktopNav from './DesktopNav'
 import style from './Desktop.module.css'
 
+
 const Desktop = () => {
   return (
     <div className={style.desktop}>
@@ -10,3 +11,4 @@ const Desktop = () => {
 }
 
 export default Desktop
+
