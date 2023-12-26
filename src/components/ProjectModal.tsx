@@ -120,7 +120,7 @@ type ProjectCardProps = {
     link: string,
     tags: string[]
 }
-function ProjectCard({ title, description, icon, image, link, tags }: ProjectCardProps) {
+function ProjectCard({ title, description, icon, image, tags }: ProjectCardProps) {
     return (
         <div className={style.projectCard}>
             <div className={style.projectMeta}>
