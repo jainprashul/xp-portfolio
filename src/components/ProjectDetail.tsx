@@ -54,7 +54,7 @@ const ProjectDetail = (props: Props) => {
 
                 <div className={style.spec}>
                     <div className={style.title}>Duration</div>
-                    <div className={style.content}>8 Month</div>
+                    <div className={style.content}>{props.project.duration}</div>
                 </div>
 
                 <div className={style.spec}>

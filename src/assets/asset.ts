@@ -28,11 +28,17 @@ import fullscreen from './icons/fullscreen.svg';
 import shortcut from './icons/shortcut.svg';
 
 
+import billinLogo from './projects/billinLogo.png';
 import billin1 from './projects/billin1.png';
 import billin2 from './projects/billin2.png';
 import billin3 from './projects/billin3.png';
 import billin4 from './projects/billin4.png';
-import billinLogo from './projects/billinLogo.png';
+
+import helpingHandsLogo from './projects/helpingLogo.png';
+import helpingHands1 from './projects/helpingHand1.png';
+import helpingHands2 from './projects/helpingHand2.png';
+import helpingHands3 from './projects/helpingHand3.png';
+import helpingHands4 from './projects/helpingHand4.png';
 
 
 // export const calender = "https://img.icons8.com/?size=48&id=WpQIVxfhhzqt&format=png"
@@ -41,7 +47,7 @@ export const mail = "https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
 
 export const projects = {
     billin1, billin2, billin3, billin4,
-    billinLogo
+    billinLogo, helpingHandsLogo, helpingHands1, helpingHands2, helpingHands3, helpingHands4
 }
 
 export {
