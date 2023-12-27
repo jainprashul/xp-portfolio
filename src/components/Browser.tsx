@@ -1,9 +1,13 @@
 import React from 'react'
 import style from './Browser.module.css'
+type Props = {
+    website?: string
+}
+const Browser = ({
+    website = 'https://en.wikipedia.org/'
+} : Props) => {
 
-const Browser = () => {
-
-    const [url, setUrl] = React.useState('https://en.wikipedia.org/')
+    const [url, setUrl] = React.useState(website)
     const [history, setHistory] = React.useState<string[]>([url])
     const [index, setIndex] = React.useState(1)
 
@@ -44,12 +48,6 @@ const Browser = () => {
                         <path d="M8 4.5a.5.5 0 0 0-1 0V7a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 0-1H8z" />
                     </svg>
                     </div>
-
-
-
-                    
-
-
                 </div>
                 <div className={style.browserBarAddress}>
                     <input type="text" placeholder="Search or enter address" value={url} onChange={(e) => {
@@ -67,7 +65,7 @@ const Browser = () => {
                 </div>
             </div>
             <div className={style.browserContent}>
-                <iframe ref={iframeRef} title="Browser" src={'https://en.wikipedia.org/'} allow='autoplay' allowFullScreen={true} sandbox='allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox' />
+                <iframe ref={iframeRef} title="Browser" src={website} allow='autoplay' allowFullScreen={true} sandbox='allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox' />
             </div>
         </div>
 
