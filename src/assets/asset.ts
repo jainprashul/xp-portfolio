@@ -28,10 +28,21 @@ import fullscreen from './icons/fullscreen.svg';
 import shortcut from './icons/shortcut.svg';
 
 
+import billin1 from './projects/billin1.png';
+import billin2 from './projects/billin2.png';
+import billin3 from './projects/billin3.png';
+import billin4 from './projects/billin4.png';
+import billinLogo from './projects/billinLogo.png';
+
 
 // export const calender = "https://img.icons8.com/?size=48&id=WpQIVxfhhzqt&format=png"
 export const mail = "https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
 // export const project = "https://img.icons8.com/?size=256&id=JJh41wIV10zF&format=png"
+
+export const projects = {
+    billin1, billin2, billin3, billin4,
+    billinLogo
+}
 
 export {
     edge,
@@ -59,6 +70,4 @@ export {
     fullscreen,
     sun,
     shortcut
-
-
 }

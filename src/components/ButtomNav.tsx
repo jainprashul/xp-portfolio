@@ -7,8 +7,17 @@ const BottomNav = () => {
   return (
     <div className={style.bg}>
       <WeatherBox />
+      <Menu />
+      <DateBox />
+    </div>
+  )
+}
+
+function Menu() {
+  return (
+    <>
       <div className={style.navIcons}>
-        <Icon icon={winMenu} tooltip='Show Menu'  />
+        <Icon icon={winMenu} tooltip='Show Menu' />
         <Icon icon={edge} isShortcut tooltip='Open Google' />
         <Icon icon={mail} isShortcut tooltip='Send me an Email' onClick={() => {
           window.open('mailto:jainprashul@gmail.com')
@@ -18,8 +27,7 @@ const BottomNav = () => {
         }} />
         <Icon icon={info} tooltip='About Me' />
       </div>
-      <DateBox />
-    </div>
+    </>
   )
 }
 

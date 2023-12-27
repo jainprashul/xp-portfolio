@@ -3,13 +3,16 @@
 import './App.css'
 import BottomNav from './components/ButtomNav'
 import Desktop from './components/Desktop'
+import { ModalProvider } from './components/context/ModalContext'
 
 function App() {
 
   return (
     <>
-      <Desktop />
-      <BottomNav />
+      <ModalProvider>
+        <Desktop />
+        <BottomNav />
+      </ModalProvider>
     </>
   )
 }

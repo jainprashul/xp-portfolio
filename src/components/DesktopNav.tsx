@@ -1,11 +1,10 @@
 import Icon from './shared/Icon'
 import { fullscreen, github, linkedin, pdf, project, steam } from '../assets/asset'
 import style from './Desktop.module.css'
-import ProjectModal from './ProjectModal'
-import { useState } from 'react'
+import { useModal } from './context/ModalContext'
+import ProjectList from './ProjectList'
 
-const DesktopNav = () => {
-  return (
+const DesktopNav = () => {  return (
     <div className={style.iconlist}>
       <Icon icon={github} title='Github' size={60} isShortcut onClick={() => {
         window.open('https://github.com/jainprashul')
@@ -39,13 +38,13 @@ export default DesktopNav
 
 
 function Project() {
-  const [open, setOpen] = useState(false)
+  const { openModal } = useModal()
+  
   return (
     <>
       <Icon icon={project} title='Projects' size={60} onClick={() => {
-        setOpen(true)
+        openModal('Projects', <ProjectList />)
       }} />
-      <ProjectModal open={open} setOpen={setOpen} />
     </>
   )
 }
