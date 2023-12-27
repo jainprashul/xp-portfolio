@@ -1,0 +1,72 @@
+.browser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-top: -2rem;
+}
+
+.browserBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.browserBarButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.browserBarAddress{
+    display: flex;
+  
+    input{
+        width: 100%;
+        height: 1.5rem;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        padding-left: 0.5rem;
+        &:focus{
+            border: 1px solid #b1b0b0;
+        }
+    }
+}
+
+.browserContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(80vh - 8rem);
+    overflow-y: scroll;
+    padding: 0;
+    gap: 1rem;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    iframe{
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+    }
+}
+
+
+
+

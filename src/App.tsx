@@ -1,7 +1,7 @@
 
 
 import './App.css'
-import BottomNav from './components/ButtomNav'
+import BottomNav from './components/BottomNav'
 import Desktop from './components/Desktop'
 import { ModalProvider } from './components/context/ModalContext'
 

@@ -2,6 +2,8 @@ import style from './BottomNav.module.css';
 import Icon from './shared/Icon';
 import { calender, edge, info, mail, sun, winMenu } from '../assets/asset';
 import React from 'react';
+import { useModal } from './context/ModalContext';
+import Browser from './Browser';
 
 const BottomNav = () => {
   return (
@@ -14,12 +16,15 @@ const BottomNav = () => {
 }
 
 function Menu() {
+  const { openModal } = useModal()
   return (
     <>
       <div className={style.navIcons}>
         <Icon icon={winMenu} tooltip='Show Menu' />
-        <Icon icon={edge} isShortcut tooltip='Open Google' />
-        <Icon icon={mail} isShortcut tooltip='Send me an Email' onClick={() => {
+        <Icon icon={edge} tooltip='Open Browser' onClick={() => {
+          openModal('Edge - Browser' , <Browser />)
+        } } />
+        <Icon icon={mail} tooltip='Send me an Email' onClick={() => {
           window.open('mailto:jainprashul@gmail.com')
         }} />
         <Icon icon={calender} tooltip='Schedule Meeting' onClick={() => {
