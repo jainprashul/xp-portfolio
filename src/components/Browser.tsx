@@ -65,7 +65,8 @@ const Browser = ({
                 </div>
             </div>
             <div className={style.browserContent}>
-                <iframe ref={iframeRef} title="Browser" src={website} allow='autoplay' allowFullScreen={true} sandbox='allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox' />
+                {website.endsWith('.pdf') ? <embed src={website} type="application/pdf" width="100%" height="100%" /> :
+                <iframe ref={iframeRef} title="Browser" src={website} allow='autoplay' allowFullScreen={true} sandbox='allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox' /> }
             </div>
         </div>
 

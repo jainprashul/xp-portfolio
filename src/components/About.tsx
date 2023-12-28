@@ -1,10 +1,11 @@
+import { me } from '@/assets/asset'
 import style from './About.module.css'
 
 const About = () => {
     return (
-        <div>
+        <div className={style.container}>
             <div className={style.borderBottom}>
-                <img src="https://avatars.githubusercontent.com/u/20634589?v=4" alt="Prashul Jain" className={style.avatar} />
+                <img src={me} alt="Prashul Jain" className={style.avatar} />
             </div>
             <p>Hi, I'm Prashul Jain. I'm a Staff Engineer at Highway 9 Networks. <br /> I'm currently working on cloud operation interface for a network management.</p>
             <>Working from around {new Date().getFullYear() - 2018} years in design and development of applications.</>

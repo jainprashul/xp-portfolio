@@ -32,6 +32,7 @@ import whatsapp from './icons/whatsapp.svg';
 import fullscreen from './icons/fullscreen.svg';
 import shortcut from './icons/shortcut.svg';
 import settings from './icons/settings.svg';
+import random from './icons/random.svg';
 
 
 import billinLogo from './projects/billinLogo.png';
@@ -48,6 +49,13 @@ import helpingHands4 from './projects/helpingHand4.png';
 
 import me from './me.jpeg';
 
+import wall0 from './wallpapers/wall0.jpg';
+import wall1 from './wallpapers/wall1.jpg';
+import wall2 from './wallpapers/wall2.jpg';
+import wall3 from './wallpapers/wall3.jpg';
+import wall4 from './wallpapers/wall4.jpg';
+import wall5 from './wallpapers/wall5.jpg';
+
 
 // export const calender = "https://img.icons8.com/?size=48&id=WpQIVxfhhzqt&format=png"
 export const mail = "https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
@@ -57,6 +65,10 @@ export const projects = {
     billin1, billin2, billin3, billin4,
     billinLogo, helpingHandsLogo, helpingHands1, helpingHands2, helpingHands3, helpingHands4
 }
+
+export const wallpapers = [
+    wall0, wall1, wall2, wall3, wall4, wall5, 
+]
 
 export {
     edge,
@@ -83,9 +95,7 @@ export {
     python,
     fullscreen,
     sun,
-    shortcut,
-    settings,
+    shortcut, settings, random,
     me,
-
     call, insta, share, whatsapp
 }

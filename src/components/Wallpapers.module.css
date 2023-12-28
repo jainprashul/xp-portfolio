@@ -1,0 +1,38 @@
+.heading{
+    margin: 0;
+    padding: 0;
+}
+
+.wallpaperContainer{
+
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.wallpaper{
+    flex: 1 1 300px;
+    cursor: pointer;
+    & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 6px;
+        transition: all 0.25s ease-in-out;
+    }
+    &:hover{
+        filter: brightness(1.2);
+        scale : 1.1;
+        transition: all 0.25s ease-in-out;
+    }
+}
+
+.random{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
