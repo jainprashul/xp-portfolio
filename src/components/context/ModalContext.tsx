@@ -20,7 +20,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const ModalProvider = ({ children }: Props) => {
+const ModalProvider = ({ children }: Props) => {
     const [modalOpen, setModalOpen] = React.useState(false);
     const [modalTitle, setModalTitle] = React.useState('');
     const [modalContent, setModalContent] = React.useState<React.ReactNode>(null);
@@ -58,5 +58,7 @@ export const ModalProvider = ({ children }: Props) => {
         </modalContext.Provider>
     );
 };
+
+export default ModalProvider;
 
 

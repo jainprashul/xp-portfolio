@@ -8,7 +8,7 @@ type Props = {
   color?: string;
   title?: string;
   tooltip?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   isShortcut?: boolean;
 }
 

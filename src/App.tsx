@@ -1,9 +1,9 @@
 
 
-import { Suspense , lazy} from 'react'
+import { Suspense, lazy } from 'react'
 import './App.css'
-import { ModalProvider } from './components/context/ModalContext'
 import { winMenu } from './assets/asset'
+import ContextsProvider from './components/context/ContextsProvider'
 const Desktop = lazy(() => import('./components/Desktop'))
 const BottomNav = lazy(() => import('./components/BottomNav'))
 
@@ -16,10 +16,10 @@ function App() {
         {/* <span className="loading-text">Loading</span> */}
       </div>
     </>}>
-      <ModalProvider>
+      <ContextsProvider>
         <Desktop />
         <BottomNav />
-      </ModalProvider>
+      </ContextsProvider>
     </Suspense>
   )
 }

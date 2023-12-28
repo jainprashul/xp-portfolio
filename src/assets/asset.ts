@@ -40,6 +40,8 @@ import helpingHands2 from './projects/helpingHand2.png';
 import helpingHands3 from './projects/helpingHand3.png';
 import helpingHands4 from './projects/helpingHand4.png';
 
+import me from './me.jpeg';
+
 
 // export const calender = "https://img.icons8.com/?size=48&id=WpQIVxfhhzqt&format=png"
 export const mail = "https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
@@ -75,5 +77,6 @@ export {
     python,
     fullscreen,
     sun,
-    shortcut
+    shortcut,
+    me,
 }

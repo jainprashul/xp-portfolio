@@ -4,6 +4,8 @@ import { calender, edge, info, mail, sun, winMenu } from '../assets/asset';
 import React from 'react';
 import { useModal } from './context/ModalContext';
 import Browser from './Browser';
+import { usePopover } from './context/PopOverContext';
+import About from './About';
 
 const BottomNav = () => {
   return (
@@ -30,11 +32,23 @@ function Menu() {
         <Icon icon={calender} tooltip='Schedule Meeting' onClick={() => {
           window.open('https://calendly.com/jainprashul/30min')
         }} />
-        <Icon icon={info} tooltip='About Me' />
+
+        <AboutMe />
       </div>
     </>
   )
 }
+
+function AboutMe(){
+  const { openPopover } = usePopover()
+  return (
+    <>
+        <Icon icon={info} tooltip='About Me' onClick={(e) => {
+          openPopover(e.currentTarget, <About />)
+        }} />
+    </>
+  )
+} 
 
 function DateBox() {
   const [time, setTime] = React.useState(new Date().toLocaleTimeString())
