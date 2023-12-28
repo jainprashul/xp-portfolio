@@ -24,8 +24,14 @@ import vite from './icons/vite.svg';
 import python from './icons/python.svg';
 import sun from './icons/sun.svg';
 
+import call from './icons/call.svg';
+import insta from './icons/insta.svg';
+import share from './icons/share.svg';
+import whatsapp from './icons/whatsapp.svg';
+
 import fullscreen from './icons/fullscreen.svg';
 import shortcut from './icons/shortcut.svg';
+import settings from './icons/settings.svg';
 
 
 import billinLogo from './projects/billinLogo.png';
@@ -78,5 +84,8 @@ export {
     fullscreen,
     sun,
     shortcut,
+    settings,
     me,
+
+    call, insta, share, whatsapp
 }
