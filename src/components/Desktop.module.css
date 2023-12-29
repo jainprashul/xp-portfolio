@@ -19,6 +19,13 @@
     height: calc(100vh - 64px);
     padding-top: 2rem;
     border-radius: 10px;
+}
 
-    
+.copyRight{
+    position: absolute;
+    bottom: 60px; 
+    display: inline-flex;
+    gap: 1rem;
+    right: 0;
+    padding: 1rem;
 }

@@ -1,4 +1,4 @@
-import { projects } from "@/assets/asset";
+import { me, projects } from "@/assets/asset";
 
 export type Project = {
     title: string,
@@ -12,12 +12,12 @@ export type Project = {
     duration: string,
 }
 
-export const Projects : Project[] = [
+export const Projects: Project[] = [
     {
         title: 'Billing Inc',
         category: 'Finance',
         subtitle: 'Finance, Inventory and Accounting App for small and medium bussiness',
-        description: 'An easy to use invoicing, inventory and accounting app, for small and medium bussiness to grow and manage their accounts integrated with various features and cloud services.',
+        description: 'An easy to use invoicing, inventory and accounting app, for small and medium bussiness to grow and manage their accounts integrated with various features and cloud services.\nFrom pen-paper billing to digital invoicing.\n•	Designed and developed an invoicing, accounting, and inventory management solution catering to wholesalers, retailers, and SMEs.\n•	Defined the data model and implemented business logic, ensuring seamless functionality.\n•	Designed the application interface to facilitate smooth integration between the application and the database.\n•	Integrated cloud functionality with Google Drive for secure data storage and backup.\n•	Implemented the project as a Progressive Web App (PWA), enabling offline usage on both mobile devices and web browsers.',
         icon: projects.billinLogo,
         image: [projects.billin1, projects.billin2, projects.billin3, projects.billin4],
         link: 'https://billinginc.now.sh/',
@@ -33,7 +33,77 @@ export const Projects : Project[] = [
         link: "https://github.com/jainprashul/HelpingHand",
         duration: '4 days (Hackathon)',
         tags: ['Android', 'Typescript', 'React Native', 'Postgres'],
-        image: [projects.helpingHands1, projects.helpingHands2, projects.helpingHands3, projects.helpingHands4],
+        image: [projects.helpingHands0, projects.helpingHands1, projects.helpingHands2, projects.helpingHands3, projects.helpingHands4],
+    },
+    {
+        title: "xpWatch",
+        category: 'Entertainment',
+        subtitle: 'Movie watching hobby turned into a platform.',
+        description: 'A platform to watch movies and tv shows online. xpWatch is a platform to watch movies and tv shows online. It will be a place where you can watch your favourite movies and tv shows online for free.\n•	Search for the new tv shows , movies & anime. \n•	Designed and implemented the user interface for a seamless viewing experience.\n•	Built the Android app to extend the platform`s reach to mobile users.\n•	Attracted an average of around 100 weekly users to the platform, highlighting its popularity and user engagement.',
+        icon: projects.xpwatchLogo,
+        link: "https://xpwatch.now.sh",
+        duration: '2 months',
+        tags: ['React', "NextJS", 'Typescript', 'Firebase', "Data Scrapping"],
+        image: [projects.xpwatch1, projects.xpwatch2, projects.xpwatch3, projects.xpwatch4],
+    },
+    {
+        title: "xpWatch App",
+        category: 'Entertainment',
+        subtitle: 'Mobile app for xpWatch.',
+        description: 'Android app for xpWatch. xpWatch is a platform to watch movies and tv shows online. It will be a place where you can watch your favourite movies and tv shows online for free.\n ',
+        icon: projects.xpwatchLogo,
+        link: "https://github.com/jainprashul/xpWatch-app/releases/download/1.0.1/xpwatch-1.0.1.apk",
+        duration: '2 months',
+        tags: ['React Native', 'Typescript', 'Firebase', "Expo", "Data Scrapping"],
+        image: [projects.xmobile0, projects.xmobile1, projects.xmobile2, projects.xmobile3, projects.xmobile4],
+    },
+    {
+        title: "Craftor : Adobe XD Plugin",
+        category: 'Productivity',
+        subtitle: 'A plugin to get digital assets to Adobe.',
+        description: 'Crafttor is a plugin to manage , download and upload your digital assets and illustrations.\nYou can find 100s of free and paid digital assets or illustrations to work with and manage it on your personal workspace. \n•	Contract-based development of a plugin for Adobe Creative Cloud. \n•	Developed the plugin to facilitate asset management within Adobe software.\n•	Successfully implemented authentication and backend server integration for a seamless user experience. \n•	Designed and executed the user interface to ensure a user-friendly and efficient workflow.\n•	Created the plugin using Adobe Photoshop, leveraging React/Redux for development. ',
+        duration: '4 months',
+        icon: "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/icons/05f11919-e75c-4f2f-ab6b-ee27710ab52d.png",
+        link: "https://exchange.adobe.com/apps/cc/f98ec4b1/crafttor",
+        tags: ["React", "Redux", "Adobe XD", "Adobe Photoshop", "Adobe Creative Cloud"],
+        image: [
+            "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/screenshots/cd6565eb-684a-4173-b1a8-b40496d6236c.png",
+            "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/screenshots/11c4813d-d0de-4086-9729-56ee22d671ca.png",
+            "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/screenshots/ccbcb7d0-42f8-4eae-bd59-9fa587d86b9a.png",
+        ],
+    },
+    {
+        title: 'Portfolio',
+        subtitle: 'My Window based portfolio',
+        description: 'This is redesigned and interactive portfolio of mine. It is inspired by the Windows 11 UI and UX. It is built using React and Typescript. Here you can find all my projects, blogs and wallpapers.',
+        icon: me,
+        link: "https://jainprashul.now.sh",
+        duration: "2 weeks",
+        tags: ['React', 'Typescript', "UI / UX", "FEED"],
+        image: [projects.portfolio1, projects.portfolio2, projects.portfolio3, projects.portfolio4],
+    },
+    {
+        title: "Order & Inventory Management System",
+        category: 'Commerce',
+        subtitle: 'A customised order and inventory management system for glass industry.',
+        description: 'A customised order and inventory management system for glass industry. It is a customised order and inventory management system for glass industry. It is a web app to manage the orders and inventory of the glass industry.\n * Generate & manage the estimates and orders from the clients. \n * Role based and multi user system. \n * Manage the inventory and stock of the industry. \n * Generate the reports and invoices. \n * Manage the clients and their orders. \n * Manage the employees and their work. \n * Seemless integration with the industry\'s existing system.',
+        icon: projects.glassLogo,
+        link: "https://glass-calc-1.vercel.app/",
+        duration: '6 months',
+        tags: ['React', 'Typescript', 'GCP', "UI / UX"],
+        image: [projects.glass1, projects.glass2, projects.glass3, projects.glass4, projects.glass5],
+    }, {
+        title: "Chatboi - Chat App",
+        category: 'Social',
+        subtitle: 'A chat app for friends and family.',
+        description: 'Curiosity turns into a chat app.\n•	A real-time social media platform designed for sharing, chatting, and messaging with data encryption.\n•	Successfully developed the app from concept to reality, promoting curiosity and meaningful connections.\n•	Defined and implemented robust data design and REST API, ensuring efficient data management and seamless communication.\n•	Created the UI/UX design efforts to create a user-friendly and engaging experience.\n•	Use firebase authentication to guarantee user security and privacy.\n •	Developed a web scraper that fetches trending social media posts using hashtags, enhancing user engagement.\n•	Utilized tech stack, including NodeJS, ReactJS, TypeScript, Ionic, Firebase, and Progressive Web App(PWA) features.',
+        duration : '6 months',
+        tags: ['React', 'Firebase' , 'PWA', "Ionic"],
+        icon: projects.chatboiLogo,
+        link: "https://chatboi.vercel.app/",
+        image: [projects.chatboi0, projects.chatboi1, projects.chatboi2, projects.chatboi3, projects.chatboi4],
+        
     }
+   
     
 ]

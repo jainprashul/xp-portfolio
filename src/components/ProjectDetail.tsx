@@ -26,7 +26,7 @@ const ProjectDetail = (props: Props) => {
             </div>
 
             <h3 className={style.sectionTitle}>About the project</h3>
-            <div className={style.description}>
+            <div  className={style.description}>
                 {props.project.description}
             </div>
 
