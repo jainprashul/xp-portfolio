@@ -14,7 +14,6 @@ import android from './icons/android.svg';
 import css from './icons/css.svg';
 import expo from './icons/expo.svg';
 import html from './icons/html.svg';
-import js from './icons/js.svg';
 import next from './icons/nextjs.svg';
 import node from './icons/node.svg';
 import react from './icons/react.svg';
@@ -113,7 +112,7 @@ export {
     outlook, calender, project,
     vscode, steam, github,
     android, expo,
-    html, css, js,
+    html, css, 
     next, node, react,
     ts, vite,
     python, 

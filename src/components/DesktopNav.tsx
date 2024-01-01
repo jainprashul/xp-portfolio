@@ -1,10 +1,13 @@
+import React, {Suspense, lazy} from 'react'
 import Icon from './shared/Icon'
 import { fullscreen, github, linkedin, pdf, project, settings, steam } from '../assets/asset'
 import style from './Desktop.module.css'
 import { useModal } from './context/ModalContext'
 import ProjectList from './ProjectList'
-import Wallpapers from './Wallpapers'
 import Browser from './Browser'
+import Loading from './shared/Loading'
+import TechStack from './TechStack'
+const Wallpapers = lazy(() => import('./Wallpapers'))
 
 const DesktopNav = () => {
   const { openModal } = useModal()
@@ -40,10 +43,13 @@ const DesktopNav = () => {
       }} />
 
       <Icon icon={settings} title='Settings' size={60} onClick={() => {
-        openModal('Settings', <Wallpapers />)
+        openModal('Settings', <Suspense fallback={<Loading />}><Wallpapers /></Suspense>)
       }} />
 
-      <Icon icon={steam} title='Steam' size={60} />
+      <Icon icon={steam} title='My Stack' size={60} onClick={() => {
+        openModal('My Tech Stack', <TechStack />)
+
+      }} />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import style from './Wallpapers.module.css'
 import { random, wallpapers } from '@/assets/asset'
 
-
 const Wallpapers = () => {
 
     function changeWallpaper(url: string) {
@@ -25,9 +24,7 @@ const Wallpapers = () => {
                 <div className={style.random}>
                 <img src={random}  alt="wallpaper"/>
                 </div>
-
-            </div>
-        
+            </div>        
         </div>
 
         

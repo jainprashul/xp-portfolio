@@ -8,7 +8,7 @@ const About = () => {
                 <img src={me} alt="Prashul Jain" className={style.avatar} />
             </div>
             <p>Hi, I'm Prashul Jain. I'm a Staff Engineer at Highway 9 Networks. <br /> I'm currently working on cloud operation interface for a network management.</p>
-            <>Working from around {new Date().getFullYear() - 2018} years in design and development of applications.</>
+            <>Working from around {new Date().getFullYear() - 2019} years in design and development of applications.</>
             <p>I'm a Computer Science graduate from Priyadarshini College of Engineering.</p>
             <p>I'm passionate about building products that make a difference.</p>
             <p>I love to read , travel and play video games</p>
