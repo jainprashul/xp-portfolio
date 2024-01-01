@@ -32,7 +32,7 @@ import fullscreen from './icons/fullscreen.svg';
 import shortcut from './icons/shortcut.svg';
 import settings from './icons/settings.svg';
 import random from './icons/random.svg';
-
+import rotate from './icons/rotate.svg';
 
 import billinLogo from './projects/billinLogo.png';
 import billin1 from './projects/billin1.png';
@@ -118,7 +118,7 @@ export {
     ts, vite,
     python, 
     fullscreen,
-    sun, shortcut, settings, random,
+    sun, shortcut, settings, random, rotate,
     me,
     call, insta, share, whatsapp,
 }
