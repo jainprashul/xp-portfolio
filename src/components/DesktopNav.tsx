@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react'
+import {Suspense, lazy} from 'react'
 import Icon from './shared/Icon'
 import { fullscreen, github, linkedin, pdf, project, settings, steam } from '../assets/asset'
 import style from './Desktop.module.css'
