@@ -30,7 +30,9 @@
 .languages {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     overflow: auto;
     margin-left: 1rem;

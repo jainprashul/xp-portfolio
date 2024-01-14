@@ -33,6 +33,12 @@ import settings from './icons/settings.svg';
 import random from './icons/random.svg';
 import rotate from './icons/rotate.svg';
 
+import call1 from './icons/call-1.svg';
+import chrome from './icons/chrome.svg';
+import contacts from './icons/contacts.svg';
+import gmail from './icons/gmail.svg';
+import message from './icons/message.svg';
+
 import billinLogo from './projects/billinLogo.png';
 import billin1 from './projects/billin1.png';
 import billin2 from './projects/billin2.png';
@@ -120,4 +126,5 @@ export {
     sun, shortcut, settings, random, rotate,
     me,
     call, insta, share, whatsapp,
+    call1, chrome, contacts, gmail, message,
 }

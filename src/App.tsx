@@ -5,6 +5,7 @@ import './App.css'
 import { rotate, winMenu } from './assets/asset'
 import ContextsProvider from './components/context/ContextsProvider'
 import { useWindowSize } from './hooks/useWindowSize'
+import Mobile from './components/mobile'
 const Desktop = lazy(() => import('./components/Desktop'))
 const BottomNav = lazy(() => import('./components/BottomNav'))
 
@@ -41,7 +42,7 @@ function DesktopView() {
   )
 }
 
-function MobileView(){
+function MobileView() {
 
   const { height, width } = useWindowSize()
 
@@ -67,10 +68,13 @@ function MobileView(){
   return (
     <div className="App">
       <div className="mobile">
-          <img className='icon-rotate' src={rotate} alt="" />
-        <h5 className='title'>
-           Please rotate your device to landscape mode to view this app.
-        </h5>
+        <ContextsProvider>
+          {/* <img className='icon-rotate' src={rotate} alt="" />
+          <h5 className='title'>
+            Please rotate your device to landscape mode to view this app.
+          </h5> */}
+          <Mobile />
+        </ContextsProvider>
       </div>
     </div>
   )

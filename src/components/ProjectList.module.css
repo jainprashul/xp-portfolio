@@ -65,6 +65,23 @@
     gap: 0.5rem;
     margin-bottom: .5rem;    
   }
+
+  @media screen and (max-width: 768px) {
+    .projects {
+      grid-template-columns: 1fr;
+    }
+
+    .projectCard {
+      .projectcard__image {
+        height: 150px;
+      }
+    }
+
+
+
+
+    
+  }
   
 
 /* Path: src/components/ProjectModel.module.css */
