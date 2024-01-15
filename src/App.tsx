@@ -1,8 +1,7 @@
 
-
 import { Suspense, lazy } from 'react'
 import './App.css'
-import { rotate, winMenu } from './assets/asset'
+import { winMenu } from './assets/asset'
 import ContextsProvider from './components/context/ContextsProvider'
 import { useWindowSize } from './hooks/useWindowSize'
 import Mobile from './components/mobile'

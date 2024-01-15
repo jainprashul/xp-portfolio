@@ -1,6 +1,6 @@
 import style from './BottomNav.module.css';
 import Icon from './shared/Icon';
-import { calender, call1, chrome, contacts, edge, gmail, info, mail, message, winMenu } from '../assets/asset';
+import { calender, call1, contacts, edge, gmail, info, mail, message, winMenu } from '../assets/asset';
 import React from 'react';
 import { useModal } from './context/ModalContext';
 import Browser from './Browser';

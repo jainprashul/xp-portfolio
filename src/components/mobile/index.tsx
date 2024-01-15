@@ -1,4 +1,3 @@
-import React from 'react'
 import style from './Mobile.module.css'
 import { MobileNav } from '../BottomNav'
 import DesktopNav from '../DesktopNav'
