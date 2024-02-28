@@ -1,4 +1,3 @@
-import GorrilaGame from "./GorrilaGame/GorrilaGame"
 import Portfolio from "./Portfolio"
 
 type Route = {
@@ -16,8 +15,8 @@ const routes : Route[] = [
     {
         name: 'GorrillaGame',
         path: '/game',
-        component: <GorrilaGame />,
-    },
+        component: <div>Game</div>,
+    }, 
     // fallback route
     {
         name: '404',
