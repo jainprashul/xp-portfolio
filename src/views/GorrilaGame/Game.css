@@ -1,5 +1,7 @@
 
 #game-canvas {
- 
+  
+  width: 100%;
+  height: calc(100vh - 10px);
   background-color: #181818;
 }
