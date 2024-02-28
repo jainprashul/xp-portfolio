@@ -1,0 +1,247 @@
+.container {
+    --pixel-size: 8px;
+    --max-width: calc(var(--pixel-size) * 64);
+
+    /* Backgrounds */
+    --primary-background: #faf8ef;
+    --secondary-background: #bbada0;
+    --cell-background: #cac1b5;
+    --tile-background: #eee4da;
+
+    /* Colors */
+    --primary-text-color: #776e65;
+    --secondary-text-color: #f9f6f2;
+
+    background: var(--primary-background);
+    width: 100dvw;
+    height: 100dvh;
+    color: var(--primary-text-color);
+    display: flex;
+    justify-content: center;
+
+}
+
+@media (max-width: 512px) {
+    .container {
+        --max-width: 100%;
+    }
+}
+
+
+.game {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: var(--max-width);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+
+    .scorecard {
+        background: var(--secondary-background);
+        border: calc(var(--pixel-size) * 0.5) solid var(--secondary-background);
+        border-radius: calc(var(--pixel-size) * .75);
+        color: var(--tile-background);
+        font-size: calc(var(--pixel-size) * 1.5);
+        font-weight: bold;
+        padding: calc(var(--pixel-size) * 1.5) calc(var(--pixel-size) * 6);
+        text-align: center;
+        text-transform: uppercase;
+    
+    }
+}
+
+.board {
+    position: relative;
+    border: calc(var(--pixel-size) * 0.5) solid var(--cell-background);
+    border-radius: calc(var(--pixel-size) * 1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.grid {
+    display: grid;
+    background: var(--cell-background);
+    
+}
+
+.cell, .tile {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: calc(var(--pixel-size) * 1);
+    background: var(--tile-background);
+    margin: calc(var(--pixel-size) * 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tile{
+    --size: 1;
+    width: calc(var(--max-width) / var(--size) - var(--pixel-size));
+
+    &[data-size="3"] { --size: 3 ; }
+    &[data-size="4"] { --size: 4 ; }
+    &[data-size="5"] { --size: 5 ; }
+    &[data-size="6"] { --size: 6 ; }
+    &[data-size="7"] { --size: 7 ; }
+    &[data-size="8"] { --size: 8 ; }
+    &[data-size="9"] { --size: 9 ; }
+    &[data-size="10"] { --size: 10 ; }
+
+}
+
+
+.tile {
+    position: absolute;
+    z-index: 2;
+
+    font-size: calc(var(--pixel-size) * 6);
+
+    /* animate */
+    transition-property: left, top, scale;
+    transition-duration: 250ms, 250ms, 100ms;
+    
+    scale: 1;
+}
+
+.tile8, 
+.tile16,
+.tile32,
+.tile64,
+.tile128,
+.tile256,
+.tile512,
+.tile1024,
+.tile2048,
+.tile4096,
+.tile8192 {
+    color: var(--secondary-text-color);
+    font-size: calc(var(--pixel-size) * 4);
+}
+
+
+
+.tile128,
+.tile256,
+.tile512 {
+    font-size: calc(var(--pixel-size) * 3.25);
+}
+
+.tile1024,
+.tile2048,
+.tile4096,
+.tile8192 {
+    font-size: calc(var(--pixel-size) * 2.75);
+}
+
+@media (max-width: 512px) {
+    .tile {
+        font-size: calc(var(--pixel-size) * 4);
+    }
+
+    .tile8, 
+    .tile16,
+    .tile32,
+    .tile64,
+    .tile128,
+    .tile256,
+    .tile512,
+    .tile1024,
+    .tile2048,
+    .tile4096,
+    .tile8192 {
+        font-size: calc(var(--pixel-size) * 1);
+    }
+
+    .tile128,
+    .tile256,
+    .tile512 {
+        font-size: calc(var(--pixel-size) * 2.5);
+    }
+
+    .tile1024,
+    .tile2048,
+    .tile4096,
+    .tile8192 {
+        font-size: calc(var(--pixel-size) * 2);
+    }
+}
+
+
+.tile2 {
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0),
+      inset 0 0 0 1px rgba(255, 255, 255, 0);
+  }
+  
+  .tile4 {
+    background: #ede0c8;
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0),
+      inset 0 0 0 1px rgba(255, 255, 255, 0);
+  }
+  
+  .tile8 {
+    background: #f2b179;
+  }
+  
+  .tile16 {
+    background: #f59563;
+  }
+  
+  .tile32 {
+    background: #f67c5f;
+  }
+  
+  .tile64 {
+    background: #f65e3b;
+  }
+  
+  .tile128 {
+    background: #edcf72;
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0.2381),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
+  }
+  
+  .tile256 {
+    background: #edcc61;
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0.31746),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
+  }
+  
+  .tile512 {
+    background: #edc850;
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0.39683),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+  }
+  
+  .tile1024 {
+    background: #edc53f;
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0.47619),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
+  }
+  
+  .tile2048,
+  .tile4096,
+  .tile8192 {
+    background: #edc22e;
+    box-shadow:
+      0 0 30px 10px rgba(243, 215, 116, 0.55556),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+  }
+  
+
+
+
+
+/* Path: src/views/2048Game/Tile.module.css */

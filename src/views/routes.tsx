@@ -1,3 +1,4 @@
+import Game2048 from "./2048Game"
 import Portfolio from "./Portfolio"
 
 type Route = {
@@ -17,6 +18,11 @@ const routes : Route[] = [
         path: '/game',
         component: <div>Game</div>,
     }, 
+    {
+        name: "2048Game",
+        path: "/2048game",
+        component : <Game2048 />  
+    },
     // fallback route
     {
         name: '404',
