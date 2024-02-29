@@ -38,7 +38,7 @@ const GameProvider = ({ children }: Props) => {
         for (let i = 0; i < gameState.size; i++) {
             for (let j = 0; j < gameState.size; j++) {
                 // check if the cell is empty
-                if (!gameState.board[i][j].length) {
+                if (!gameState.board[i][j]) {
                     res.push([i, j]);
                 }
             }
@@ -79,7 +79,7 @@ const GameProvider = ({ children }: Props) => {
             setTimeout(() => {
                 dispatch({ type: 'CLEAN' });
                 addRandomTile();
-            }, 200);
+            }, 100);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState.hasChanged]);

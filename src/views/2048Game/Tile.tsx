@@ -4,6 +4,7 @@ import usePreviousProps from '@/hooks/usePreviousProps'
 import useResizeObserver from '@/hooks/useResizeObserver'
 
 const pixel = 8;
+const maxWindowSize = pixel * 64;
 
 export type TileMeta = {
     id?: number | string,
@@ -39,11 +40,11 @@ const Tile = ({size , value, position }: Props) => {
      * based on the input `position` array and the `dim` object's width and height.
      */
     const positionToPixels = (position : [number, number]) => {
-        const width = parseInt(dim?.width.toFixed() ?? '0')
-        const height = parseInt(dim?.height.toFixed() ?? '0')
+        const width = parseInt(dim?.width.toFixed() ?? '0') || maxWindowSize / size
+        const height = parseInt(dim?.height.toFixed() ?? '0') || maxWindowSize / size
         return {
-            left: position[0] * width + position[0] * (pixel -1),
-            top: position[1] * height + position[1] * (pixel -1),
+            left: position[0] * width + position[0] * (pixel - 1),
+            top: position[1] * height + position[1] * (pixel - 1),
         }
     }
 
@@ -51,10 +52,10 @@ const Tile = ({size , value, position }: Props) => {
 
     React.useEffect(() => {
         if (hasChanged) {
-            setScale(1.4)
+            setScale(1.1)
             setTimeout(() => {
                 setScale(1)
-            }, 200)
+            }, 100)
         }
     }, [hasChanged, scale])
 

@@ -103,7 +103,7 @@
 
     font-size: calc(var(--pixel-size) * 6);
 
-    /* animate */
+/* animate */
     transition-property: left, top, scale;
     transition-duration: 250ms, 250ms, 100ms;
     

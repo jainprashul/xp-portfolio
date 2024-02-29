@@ -8,7 +8,7 @@ type TileMap = Record<string, Tile>
 
 type State = {
     size: number,
-    board: string[][],
+    board: (string | undefined)[][],
     tiles: TileMap,
     score: number,
     hasChanged: boolean,
@@ -26,7 +26,7 @@ type Action =
 
 
 function createBoard(size: number) {
-    const board = Array.from({ length: size }, () => Array.from({ length: size }, () => ''))
+    const board = Array.from({ length: size }, () => Array.from({ length: size }, () => undefined)) as (string | undefined)[][]
     return board
 }
 
@@ -52,7 +52,7 @@ export function gameReducer(state: State = initState, action: Action): State {
             {
                 const flattened = state.board.flat()
                 const newTiles: TileMap = flattened.reduce((result, tileID) => {
-                    if (tileID !== '') {
+                    if (tileID) {
                         result[tileID] = state.tiles[tileID]
                     }
                     return result
@@ -68,7 +68,7 @@ export function gameReducer(state: State = initState, action: Action): State {
             {
                 const tileID = uuid()
                 const [x, y] = action.payload.position;
-                const newBoard = JSON.parse(JSON.stringify(state.board));
+                const newBoard = structuredClone(state.board);
                 newBoard[y][x] = tileID;
 
                 console.log('newTile', action.payload.position, tileID,)
@@ -100,9 +100,9 @@ export function gameReducer(state: State = initState, action: Action): State {
                     let prevTile: Tile | undefined;
                     for (let y = 0; y < size; y++) {
                         const tileID = state.board[y][x]
-                        const currentTile = state.tiles[tileID]
-
                         if (!tileID) continue;
+
+                        const currentTile = state.tiles[tileID]
 
                         if (prevTile && prevTile.value === currentTile.value) {
                             // increment score
@@ -160,42 +160,43 @@ export function gameReducer(state: State = initState, action: Action): State {
                     let prevTile: Tile | undefined;
                     for (let y = size - 1; y >= 0; y--) {
                         const tileID = state.board[y][x]
+                        if (!tileID) continue;
                         const currentTile = state.tiles[tileID]
 
-                        if (tileID) {
-                            if (prevTile && prevTile.value === currentTile.value) {
-                                // increment score
-                                score += prevTile.value * 2;
-                                // merge tiles
-                                newTiles[prevTile.id as string] = {
-                                    ...prevTile,
-                                    value: prevTile.value * 2,
-                                }
-                                // update position of the merged tile to the new position
-                                newTiles[tileID] = {
-                                    ...currentTile,
-                                    position: [x, newY + 1],
-                                }
-                                // remove the old tile
-                                prevTile = undefined;
-                                hasChanged = true;
-                                continue;
+
+                        if (prevTile && prevTile.value === currentTile.value) {
+                            // increment score
+                            score += prevTile.value * 2;
+                            // merge tiles
+                            newTiles[prevTile.id as string] = {
+                                ...prevTile,
+                                value: prevTile.value * 2,
                             }
-                            // update the board with the new position
-                            newBoard[newY][x] = tileID;
-                            console.log(tileID, currentTile.position, "move to", [x, newY])
-                            // if there is a gap, move the tile to the new position
+                            // update position of the merged tile to the new position
                             newTiles[tileID] = {
                                 ...currentTile,
-                                position: [x, newY],
+                                position: [x, newY + 1],
                             }
-                            prevTile = newTiles[tileID];
-                            // check if the tile has changed position to update the state accordingly
-                            if ([x, newY].toString() !== currentTile.position.toString()) {
-                                hasChanged = true;
-                            }
-                            newY--;
+                            // remove the old tile
+                            prevTile = undefined;
+                            hasChanged = true;
+                            continue;
                         }
+                        // update the board with the new position
+                        newBoard[newY][x] = tileID;
+                        console.log(tileID, currentTile.position, "move to", [x, newY])
+                        // if there is a gap, move the tile to the new position
+                        newTiles[tileID] = {
+                            ...currentTile,
+                            position: [x, newY],
+                        }
+                        prevTile = newTiles[tileID];
+                        // check if the tile has changed position to update the state accordingly
+                        if ([x, newY].toString() !== currentTile.position.toString()) {
+                            hasChanged = true;
+                        }
+                        newY--;
+
                     }
                 }
                 return {
@@ -219,42 +220,42 @@ export function gameReducer(state: State = initState, action: Action): State {
                     let prevTile: Tile | undefined;
                     for (let x = 0; x < size; x++) {
                         const tileID = state.board[y][x]
+                        if (!tileID) continue;
+
                         const currentTile = state.tiles[tileID]
 
-                        if (tileID) {
-                            if (prevTile && prevTile.value === currentTile.value) {
-                                // increment score
-                                score += prevTile.value * 2;
-                                // merge tiles
-                                newTiles[prevTile.id as string] = {
-                                    ...prevTile,
-                                    value: prevTile.value * 2,
-                                }
-                                // update position of the merged tile to the new position
-                                newTiles[tileID] = {
-                                    ...currentTile,
-                                    position: [newX - 1, y],
-                                }
-                                // remove the old tile
-                                prevTile = undefined;
-                                hasChanged = true;
-                                continue;
+                        if (prevTile && prevTile.value === currentTile.value) {
+                            // increment score
+                            score += prevTile.value * 2;
+                            // merge tiles
+                            newTiles[prevTile.id as string] = {
+                                ...prevTile,
+                                value: prevTile.value * 2,
                             }
-                            // update the board with the new position
-                            newBoard[y][newX] = tileID;
-                            console.log(tileID, currentTile.position, "move to", [newX, y])
-                            // if there is a gap, move the tile to the new position
+                            // update position of the merged tile to the new position
                             newTiles[tileID] = {
                                 ...currentTile,
-                                position: [newX, y],
+                                position: [newX - 1, y],
                             }
-                            prevTile = newTiles[tileID];
-                            // check if the tile has changed position to update the state accordingly
-                            if ([newX, y].toString() !== currentTile.position.toString()) {
-                                hasChanged = true;
-                            }
-                            newX++;
+                            // remove the old tile
+                            prevTile = undefined;
+                            hasChanged = true;
+                            continue;
                         }
+                        // update the board with the new position
+                        newBoard[y][newX] = tileID;
+                        console.log(tileID, currentTile.position, "move to", [newX, y])
+                        // if there is a gap, move the tile to the new position
+                        newTiles[tileID] = {
+                            ...currentTile,
+                            position: [newX, y],
+                        }
+                        prevTile = newTiles[tileID];
+                        // check if the tile has changed position to update the state accordingly
+                        if ([newX, y].toString() !== currentTile.position.toString()) {
+                            hasChanged = true;
+                        }
+                        newX++;
                     }
                 }
                 return {
@@ -278,42 +279,42 @@ export function gameReducer(state: State = initState, action: Action): State {
                     let prevTile: Tile | undefined;
                     for (let x = size - 1; x >= 0; x--) {
                         const tileID = state.board[y][x]
+                        if (!tileID) continue;
+
                         const currentTile = state.tiles[tileID]
 
-                        if (tileID) {
-                            if (prevTile && prevTile.value === currentTile.value) {
-                                // increment score
-                                score += prevTile.value * 2;
-                                // merge tiles
-                                newTiles[prevTile.id as string] = {
-                                    ...prevTile,
-                                    value: prevTile.value * 2,
-                                }
-                                // update position of the merged tile to the new position
-                                newTiles[tileID] = {
-                                    ...currentTile,
-                                    position: [newX + 1, y],
-                                }
-                                // remove the old tile
-                                prevTile = undefined;
-                                hasChanged = true;
-                                continue;
+                        if (prevTile && prevTile.value === currentTile.value) {
+                            // increment score
+                            score += prevTile.value * 2;
+                            // merge tiles
+                            newTiles[prevTile.id as string] = {
+                                ...prevTile,
+                                value: prevTile.value * 2,
                             }
-                            // update the board with the new position
-                            newBoard[y][newX] = tileID;
-                            console.log(tileID, currentTile.position, "move to", [newX, y])
-                            // if there is a gap, move the tile to the new position
+                            // update position of the merged tile to the new position
                             newTiles[tileID] = {
                                 ...currentTile,
-                                position: [newX, y],
+                                position: [newX + 1, y],
                             }
-                            prevTile = newTiles[tileID];
-                            // check if the tile has changed position to update the state accordingly
-                            if ([newX, y].toString() !== currentTile.position.toString()) {
-                                hasChanged = true;
-                            }
-                            newX--;
+                            // remove the old tile
+                            prevTile = undefined;
+                            hasChanged = true;
+                            continue;
                         }
+                        // update the board with the new position
+                        newBoard[y][newX] = tileID;
+                        console.log(tileID, currentTile.position, "move to", [newX, y])
+                        // if there is a gap, move the tile to the new position
+                        newTiles[tileID] = {
+                            ...currentTile,
+                            position: [newX, y],
+                        }
+                        prevTile = newTiles[tileID];
+                        // check if the tile has changed position to update the state accordingly
+                        if ([newX, y].toString() !== currentTile.position.toString()) {
+                            hasChanged = true;
+                        }
+                        newX--;
                     }
                 }
                 return {

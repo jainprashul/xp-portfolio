@@ -62,7 +62,8 @@ const Board = () => {
     const renderTiles = () => {
         const tiles = getTiles()
         return tiles.map((tile) => {
-            return <Tile key={tile.id} {...tile} size={boardSize} />
+            // console.log('tile', tile)
+            return <Tile key={tile?.id} {...tile} size={boardSize} />
         })
     }
 
