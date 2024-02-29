@@ -1,15 +1,15 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import style from './Game.module.css'
-import MobileSwiper from '@/components/shared/MobileSwiper'
+import MobileSwiper, { SwipeInput } from '@/components/shared/MobileSwiper'
 import Grid from './Grid'
+import { useGame } from './GameContext'
 import Tile from './Tile'
-import { useInterval } from '@/hooks/useInterval'
 
-type Props = {
-    size?: number
-}
 
-const Board = ({ size = 8 }: Props) => {
+
+const Board = () => {
+
+    const { getTiles , moveTiles , startGame, boardSize } = useGame()
 
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
         console.log(e.key)
@@ -18,18 +18,21 @@ const Board = ({ size = 8 }: Props) => {
         switch (e.code) {
             case 'ArrowUp':
                 console.log('up')
+                moveTiles('MOVE_UP')
                 break;
             case 'ArrowDown':
                 console.log('down')
+                moveTiles('MOVE_DOWN')
                 break;
             case 'ArrowLeft':
                 console.log('left')
+                moveTiles('MOVE_LEFT')
                 break;
             case 'ArrowRight':
                 console.log('right')
-                break;
+                moveTiles('MOVE_RIGHT')
         }
-    }, [])
+    }, [moveTiles])
 
     React.useEffect(() => {
         window.addEventListener('keydown', handleKeyDown)
@@ -39,22 +42,46 @@ const Board = ({ size = 8 }: Props) => {
         }
     }, [handleKeyDown])
 
+    const handleSwipe = useCallback(({ deltaX , deltaY , direction } : SwipeInput) => {
+        console.log('swiped', direction, deltaX, deltaY);
+        switch (direction) {
+            case 'up':
+                moveTiles('MOVE_UP')
+                break;
+            case 'down':
+                moveTiles('MOVE_DOWN')
+                break;
+            case 'left':
+                moveTiles('MOVE_LEFT')
+                break;
+            case 'right':
+                moveTiles('MOVE_RIGHT')
+        }
+    }, [moveTiles])
 
-    const [position, setPosition] = React.useState([0, 0])
+    const renderTiles = () => {
+        const tiles = getTiles()
+        return tiles.map((tile) => {
+            return <Tile key={tile.id} {...tile} size={boardSize} />
+        })
+    }
 
-    useInterval(() => {
-        const random = Math.floor(Math.random() * 8)
-        const random2 = Math.floor(Math.random() * 8)
-        setPosition([random, random2])
-    }, 2000)
+
+    const initialized = useRef(false);
+
+    React.useEffect(() => {
+        if (!initialized.current) {
+            startGame();
+            initialized.current = true;
+        }
+    }, [startGame]);
+
 
     return (
-        <MobileSwiper onSwipe={() => {
-            console.log('swiped')
-        }}>
+        <MobileSwiper onSwipe={handleSwipe}>
             <div className={style.board}>
-                <Tile value={128} position={position} size={size} />
-                <Grid size={size} />
+                {renderTiles()}
+                <Grid size={boardSize} />
             </div>
         </MobileSwiper>
     )

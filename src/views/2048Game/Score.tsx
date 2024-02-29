@@ -1,15 +1,12 @@
-import React from 'react'
 import style from './Game.module.css'
+import { useGame } from './GameContext'
 
-type Props = {
-    score : number
-}
-
-const Score = (props: Props) => {
+const Score = () => {
+  const {score} = useGame()
   return (
     <div className={style.scorecard}>
     <div>Score</div>
-    <div>{props.score}</div>
+    <div>{score}</div>
 </div>
   )
 }
