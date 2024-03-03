@@ -1,4 +1,3 @@
-import React from 'react'
 import style from './Game.module.css'
 import Score from './Score'
 import GameProvider from '@/views/2048Game/GameContext'
