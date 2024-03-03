@@ -21,6 +21,8 @@ import ts from './icons/ts.svg';
 import vite from './icons/vite.svg';
 import python from './icons/python.svg';
 import sun from './icons/sun.svg';
+import G2048 from './icons/2048.svg';
+import game from './icons/game.png';
 
 import call from './icons/call.svg';
 import insta from './icons/insta.svg';
@@ -127,4 +129,5 @@ export {
     me,
     call, insta, share, whatsapp,
     call1, chrome, contacts, gmail, message,
+    G2048, game
 }

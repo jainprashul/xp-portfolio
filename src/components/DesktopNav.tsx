@@ -1,12 +1,13 @@
 import { Suspense, lazy } from 'react'
 import Icon from './shared/Icon'
-import { fullscreen, github, linkedin, pdf, project, settings, steam } from '../assets/asset'
+import { fullscreen, game, github, linkedin, pdf, project, settings, steam } from '../assets/asset'
 import style from './Desktop.module.css'
 import { useModal } from './context/ModalContext'
 import ProjectList from './ProjectList'
 import Browser from './Browser'
 import Loading from './shared/Loading'
 import TechStack from './TechStack'
+import Gaming from './Gaming'
 const Wallpapers = lazy(() => import('./Wallpapers'))
 
 const DesktopNav = () => {
@@ -48,7 +49,10 @@ const DesktopNav = () => {
 
       <Icon icon={steam} title='My Stack' size={60} onClick={() => {
         openModal('My Tech Stack', <TechStack />)
+      }} />
 
+      <Icon icon={game} title='Games' size={60} onClick={() => {
+        openModal('Games', <Gaming />)
       }} />
     </div>
   )
