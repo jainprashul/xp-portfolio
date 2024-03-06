@@ -33,5 +33,6 @@
 @media screen and (max-width: 768px) {
     .iconlist {
         flex-direction: row;
+        gap : 0.5rem;
     }
 }

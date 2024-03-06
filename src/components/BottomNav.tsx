@@ -86,6 +86,9 @@ function WeatherBox() {
 export default BottomNav
 
 export function MobileNav() {
+  const { openModal  } = useModal()
+
+  
   return (
     <div className={style.mobileNav}>
       <Icon icon={call1} size={56} onClick={() => {
@@ -98,7 +101,8 @@ export function MobileNav() {
         window.open('mailto:jainprashul.now.sh')
       }} />
       <Icon icon={contacts} size={50} onClick={() => {
-        window.open('https://contacts.google.com/')
+
+        openModal("About Me", <About />)
       }} />
     </div>
   )
