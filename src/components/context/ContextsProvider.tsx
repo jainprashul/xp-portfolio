@@ -1,6 +1,7 @@
 import React from 'react'
 import ModalProvider from './ModalContext'
 import PopoverProvider from './PopOverContext'
+import AnalyticsProvider from './AnalyticsContext'
 
 
 type Props = {
@@ -11,7 +12,9 @@ const ContextsProvider = (props: Props) => {
   return (
     <ModalProvider>
       <PopoverProvider>
-        {props.children}
+        <AnalyticsProvider>
+          {props.children}
+        </AnalyticsProvider>
       </PopoverProvider>
     </ModalProvider>
   )
