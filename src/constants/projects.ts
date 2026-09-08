@@ -1,71 +1,188 @@
 import { me, projects } from "@/assets/asset";
 
+export type ProjectSection = {
+    title: string;
+    content: string | string[];
+}
+
 export type Project = {
-    title: string,
-    subtitle?: string,
-    category?: string,
-    description: string,
-    icon: string,
-    image: string[],
-    link: string,
-    tags: string[],
-    duration: string,
+    title: string;
+    subtitle?: string;
+    category?: 'Staff Systems' | 'Developer Tooling' | 'Product & SaaS' | 'Archive';
+    tier?: 'featured' | 'flagship' | 'archive';
+    company?: string;
+    role?: string;
+    duration: string;
+    description: string;
+    icon: string;
+    image: string[];
+    link?: string;
+    github?: string;
+    tags: string[];
+    sections?: ProjectSection[];
 }
 
 export const Projects: Project[] = [
     {
-        title: 'Billing Inc',
-        category: 'Finance',
-        subtitle: 'Finance, Inventory and Accounting App for small and medium bussiness',
-        description: 'An easy to use invoicing, inventory and accounting app, for small and medium bussiness to grow and manage their accounts integrated with various features and cloud services.\nFrom pen-paper billing to digital invoicing.\n•	Designed and developed an invoicing, accounting, and inventory management solution catering to wholesalers, retailers, and SMEs.\n•	Defined the data model and implemented business logic, ensuring seamless functionality.\n•	Designed the application interface to facilitate smooth integration between the application and the database.\n•	Integrated cloud functionality with Google Drive for secure data storage and backup.\n•	Implemented the project as a Progressive Web App (PWA), enabling offline usage on both mobile devices and web browsers.',
-        icon: projects.billinLogo,
-        image: [projects.billin1, projects.billin2, projects.billin3, projects.billin4],
-        link: 'https://billinginc.now.sh/',
-        tags: ['React', 'Typescript', 'GCP'],
-        duration: '8 months',
+        title: 'AI Assistant Platform & Architecture',
+        category: 'Staff Systems',
+        tier: 'featured',
+        company: 'Highway9 Networks',
+        role: 'Staff Engineer, R&D UX',
+        subtitle: 'Enterprise AI assistant with principal auth, ACLs, and audit attribution',
+        description: 'Modular AI Assistant architecture for a multi-tenant enterprise networking SaaS—JWT principal-based auth, ACL enablement, and via-assistant audit trails so operators can use AI safely inside production workflows.',
+        icon: me,
+        image: [],
+        tags: ['TypeScript', 'React', 'Go', 'AI Systems', 'JWT/Auth', 'ACLs', 'Kubernetes'],
+        duration: 'Ongoing · Highway9',
+        sections: [
+            {
+                title: 'Problem Statement',
+                content: 'Enabling safe, multi-tenant AI assistant interactions in an enterprise networking SaaS without security regressions or opaque execution.',
+            },
+            {
+                title: 'Architecture & Security Model',
+                content: [
+                    'Modular packaging across environments (CSP/VMC)',
+                    'JWT principal-based authentication for assistant actions',
+                    'Granular ACL/role access control instead of global feature flags',
+                    'Explicit viaAssistant audit logging for attribution',
+                ],
+            },
+            {
+                title: 'Key Impact',
+                content: 'Standardized enterprise AI assistant adoption across tenant environments with end-to-end security auditability.',
+            },
+        ],
     },
     {
-        title: 'Helping Hands',
-        category: 'Social',
-        subtitle: 'A social platform to connect people in need with people who can help',
-        description: 'A social platform to connect people in need with people who can help. Helping Hands is a platform to help people in need by connecting them with people who can help them. It will be serve a job board for people who are looking for jobs and people who are looking for workers.',
-        icon: projects.helpingHandsLogo,
-        link: "https://github.com/jainprashul/HelpingHand",
-        duration: '4 days (Hackathon)',
-        tags: ['Android', 'Typescript', 'React Native', 'Postgres'],
-        image: [projects.helpingHands0, projects.helpingHands1, projects.helpingHands2, projects.helpingHands3, projects.helpingHands4],
+        title: 'Helm & Kubernetes Infrastructure Visualization',
+        category: 'Staff Systems',
+        tier: 'featured',
+        company: 'Highway9 Networks',
+        role: 'Staff Engineer, R&D UX',
+        subtitle: 'Helm charts and live cluster state as interactive dependency graphs',
+        description: 'Infrastructure reasoning tools that turn Helm chart configs and live Kubernetes cluster state into interactive system graphs so operators can debug complex deployments faster.',
+        icon: me,
+        image: [],
+        tags: ['React', 'TypeScript', 'Go', 'Kubernetes', 'Helm', 'Graph Visualization'],
+        duration: 'Ongoing · Highway9',
+        sections: [
+            {
+                title: 'Problem Statement',
+                content: 'Static Helm templates and complex Kubernetes YAML are difficult for network operators to reason about during deployment and debugging.',
+            },
+            {
+                title: 'System Architecture',
+                content: [
+                    'Parse Helm charts into graph-ready resource models',
+                    'Correlate chart resources with live cluster runtime state',
+                    'Interactive dependency graphs for operator debugging',
+                ],
+            },
+            {
+                title: 'Key Impact',
+                content: 'Accelerated deployment troubleshooting and reduced operator configuration errors by making infra relationships visible in one place.',
+            },
+        ],
     },
     {
-        title: "xpWatch",
-        category: 'Entertainment',
-        subtitle: 'Movie watching hobby turned into a platform.',
-        description: 'A platform to watch movies and tv shows online. xpWatch is a platform to watch movies and tv shows online. It will be a place where you can watch your favourite movies and tv shows online for free.\n•	Search for the new tv shows , movies & anime. \n•	Designed and implemented the user interface for a seamless viewing experience.\n•	Built the Android app to extend the platform`s reach to mobile users.\n•	Attracted an average of around 100 weekly users to the platform, highlighting its popularity and user engagement.',
-        icon: projects.xpwatchLogo,
-        link: "https://xpwatch.now.sh",
-        duration: '2 months',
-        tags: ['React', "NextJS", 'Typescript', 'Firebase', "Data Scrapping"],
-        image: [projects.xpwatch1, projects.xpwatch2, projects.xpwatch3, projects.xpwatch4],
+        title: 'AI Grid & Cloud Shell Systems UX',
+        category: 'Staff Systems',
+        tier: 'featured',
+        company: 'Highway9 Networks',
+        role: 'Staff Engineer, R&D UX',
+        subtitle: 'Cluster, node-pool, storage UX with page-scoped operator Cloud Shell',
+        description: 'Operator-facing infrastructure management surfaces—clusters, node pools, storage, app catalog, live metrics—plus a resilient Cloud Shell with context separation and WebSocket connection lifecycle management.',
+        icon: me,
+        image: [],
+        tags: ['React', 'WebSockets', 'xterm.js', 'Kubernetes', 'Redux', 'Edge Hardware'],
+        duration: 'Ongoing · Highway9',
+        sections: [
+            {
+                title: 'Problem Statement',
+                content: 'Complex cloud-native edge inventory, node pools, storage, and app catalog flows required seamless command-line execution and live telemetry.',
+            },
+            {
+                title: 'System Architecture',
+                content: [
+                    'AI Grid surfaces for clusters, node pools, storage, and catalog flows',
+                    'Live metrics wiring via Redux workers and API type sync',
+                    'Page-scoped Cloud Shell with decoupled WebSocket lifecycle',
+                ],
+            },
+            {
+                title: 'Key Impact',
+                content: 'Unified operator experience across distributed edge hardware and cluster management.',
+            },
+        ],
     },
     {
-        title: "xpWatch App",
-        category: 'Entertainment',
-        subtitle: 'Mobile app for xpWatch.',
-        description: 'Android app for xpWatch. xpWatch is a platform to watch movies and tv shows online. It will be a place where you can watch your favourite movies and tv shows online for free.\n ',
-        icon: projects.xpwatchLogo,
-        link: "https://github.com/jainprashul/xpWatch-app/releases/download/1.0.1/xpwatch-1.0.1.apk",
-        duration: '2 months',
-        tags: ['React Native', 'Typescript', 'Firebase', "Expo", "Data Scrapping"],
-        image: [projects.xmobile0, projects.xmobile1, projects.xmobile2, projects.xmobile3, projects.xmobile4],
+        title: 'Realtime SaaS Performance Optimization',
+        category: 'Staff Systems',
+        tier: 'featured',
+        company: 'Highway9 Networks',
+        role: 'Staff Engineer, R&D UX',
+        subtitle: 'WebSocket sync, Maps teardown, and main-thread performance under load',
+        description: 'Hardened high-frequency SaaS performance: shallow-update socket patch paths, Google Maps teardown leak fixes, lazy-loaded map/graph widgets, and Highcharts redraw cleanup.',
+        icon: me,
+        image: [],
+        tags: ['Performance Profiling', 'WebSockets', 'Google Maps API', 'React', 'Highcharts'],
+        duration: 'Ongoing · Highway9',
+        sections: [
+            {
+                title: 'Challenge & Analysis',
+                content: 'Streaming telemetry and high-frequency entity patches caused multi-second main-thread stalls, Google Maps teardown leaks, and chart redraw waste.',
+            },
+            {
+                title: 'Architectural Fixes',
+                content: [
+                    'Shallow-update fast path for WebSocket entity patches',
+                    'Eliminated Google Maps TimerFire leaks on navigation',
+                    'Lazy-loaded heavy map/graph widgets',
+                    'Fixed Highcharts redraw cycles under streaming load',
+                ],
+            },
+            {
+                title: 'Results',
+                content: 'Removed multi-second UI freezes and reduced unnecessary re-renders by ~50%.',
+            },
+        ],
     },
     {
-        title: "Craftor : Adobe XD Plugin",
-        category: 'Productivity',
-        subtitle: 'A plugin to get digital assets to Adobe.',
-        description: 'Crafttor is a plugin to manage , download and upload your digital assets and illustrations.\nYou can find 100s of free and paid digital assets or illustrations to work with and manage it on your personal workspace. \n•	Contract-based development of a plugin for Adobe Creative Cloud. \n•	Developed the plugin to facilitate asset management within Adobe software.\n•	Successfully implemented authentication and backend server integration for a seamless user experience. \n•	Designed and executed the user interface to ensure a user-friendly and efficient workflow.\n•	Created the plugin using Adobe Photoshop, leveraging React/Redux for development. ',
+        title: 'OpenCode PR-Review & Semantic Search',
+        category: 'Developer Tooling',
+        tier: 'flagship',
+        role: 'Staff Engineer / Open Source',
+        subtitle: 'AI code-review CI on self-hosted runners with structured review contracts',
+        description: 'Automated AI review workflow on self-hosted GitHub runners with structured review-json contracts, fuzzy deduplication, resolved-thread suppression, safer publish permissions, and semantic repo indexing.',
+        icon: me,
+        image: [],
+        github: 'https://github.com/jainprashul/opencode-semantic-search',
+        tags: ['GitHub Actions', 'TypeScript', 'Node.js', 'CI/CD', 'OpenCode'],
+        duration: '2025 – Present',
+        sections: [
+            {
+                title: 'What it solves',
+                content: [
+                    'Consistent AI PR reviews on self-hosted runners',
+                    'Structured review output with dedupe and thread suppression',
+                    'Safer publish permissions for automated comments',
+                ],
+            },
+        ],
+    },
+    {
+        title: 'Crafttor — Adobe Creative Cloud Plugin',
+        category: 'Product & SaaS',
+        tier: 'flagship',
+        role: 'Full Stack Developer',
+        subtitle: 'Asset management plugin on the Adobe Exchange marketplace',
+        description: 'Contract-based Adobe Creative Cloud plugin for managing, downloading, and uploading digital assets and illustrations—with auth, backend integration, and React/Redux UI.',
         duration: '4 months',
         icon: "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/icons/05f11919-e75c-4f2f-ab6b-ee27710ab52d.png",
         link: "https://exchange.adobe.com/apps/cc/f98ec4b1/crafttor",
-        tags: ["React", "Redux", "Adobe XD", "Adobe Photoshop", "Adobe Creative Cloud"],
+        tags: ["React", "Redux", "Adobe UXP", "Adobe Creative Cloud"],
         image: [
             "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/screenshots/cd6565eb-684a-4173-b1a8-b40496d6236c.png",
             "https://exchange-assets.azureedge.net/uxp/Extensions/f98ec4b1/2e35a488-9a48-4a5b-baae-8e4529075101/screenshots/11c4813d-d0de-4086-9729-56ee22d671ca.png",
@@ -73,37 +190,55 @@ export const Projects: Project[] = [
         ],
     },
     {
-        title: 'Portfolio',
-        subtitle: 'My Window based portfolio',
-        description: 'This is redesigned and interactive portfolio of mine. It is inspired by the Windows 11 UI and UX. It is built using React and Typescript. Here you can find all my projects, blogs and wallpapers.',
-        icon: me,
-        link: "https://jainprashul.now.sh",
-        duration: "2 weeks",
-        tags: ['React', 'Typescript', "UI / UX", "FEED"],
-        image: [projects.portfolio1, projects.portfolio2, projects.portfolio3, projects.portfolio4],
+        title: "Billin' Inc",
+        category: 'Product & SaaS',
+        tier: 'flagship',
+        role: 'Full Stack Developer',
+        subtitle: 'Invoicing, inventory, and accounting PWA for SMEs',
+        description: 'Invoicing, accounting, and inventory management for wholesalers, retailers, and SMEs—data model and business logic, Google Drive backup, and Progressive Web App offline usage on mobile and web.',
+        icon: projects.billinLogo,
+        image: [projects.billin1, projects.billin2, projects.billin3, projects.billin4],
+        github: 'https://github.com/jainprashul/billin-inc-v4',
+        tags: ['React', 'TypeScript', 'Node.js', 'Express', 'PWA', 'GCP'],
+        duration: '8 months',
     },
     {
-        title: "Order & Inventory Management System",
-        category: 'Commerce',
-        subtitle: 'A customised order and inventory management system for glass industry.',
-        description: 'A customised order and inventory management system for glass industry. It is a customised order and inventory management system for glass industry. It is a web app to manage the orders and inventory of the glass industry.\n * Generate & manage the estimates and orders from the clients. \n * Role based and multi user system. \n * Manage the inventory and stock of the industry. \n * Generate the reports and invoices. \n * Manage the clients and their orders. \n * Manage the employees and their work. \n * Seemless integration with the industry\'s existing system.',
+        title: 'OMA-Cast & Peer Media Sync',
+        category: 'Developer Tooling',
+        tier: 'flagship',
+        role: 'Full Stack Developer',
+        subtitle: 'Low-latency peer-to-peer media sync and casting utilities',
+        description: 'WebRTC and WebSocket peer-to-peer media synchronization and streaming utilities for low-latency multi-device playback.',
+        icon: me,
+        image: [],
+        github: 'https://github.com/jainprashul/oma-cast',
+        tags: ['WebRTC', 'WebSockets', 'TypeScript', 'P2P'],
+        duration: 'Side project',
+    },
+    {
+        title: 'Order & Inventory Management System',
+        category: 'Archive',
+        tier: 'archive',
+        role: 'Full Stack Developer',
+        subtitle: 'Custom order and inventory system for the glass industry',
+        description: 'Web app for estimates, orders, role-based multi-user access, inventory/stock, reports, invoices, and client/employee management for a glass industry workflow.',
         icon: projects.glassLogo,
-        link: "https://glass-calc-1.vercel.app/",
+        link: 'https://glass-calc-1.vercel.app/',
         duration: '6 months',
-        tags: ['React', 'Typescript', 'GCP', "UI / UX"],
+        tags: ['React', 'TypeScript', 'GCP', 'UI / UX'],
         image: [projects.glass1, projects.glass2, projects.glass3, projects.glass4, projects.glass5],
-    }, {
-        title: "Chatboi - Chat App",
-        category: 'Social',
-        subtitle: 'A chat app for friends and family.',
-        description: 'Curiosity turns into a chat app.\n•	A real-time social media platform designed for sharing, chatting, and messaging with data encryption.\n•	Successfully developed the app from concept to reality, promoting curiosity and meaningful connections.\n•	Defined and implemented robust data design and REST API, ensuring efficient data management and seamless communication.\n•	Created the UI/UX design efforts to create a user-friendly and engaging experience.\n•	Use firebase authentication to guarantee user security and privacy.\n •	Developed a web scraper that fetches trending social media posts using hashtags, enhancing user engagement.\n•	Utilized tech stack, including NodeJS, ReactJS, TypeScript, Ionic, Firebase, and Progressive Web App(PWA) features.',
-        duration : '6 months',
-        tags: ['React', 'Firebase' , 'PWA', "Ionic"],
-        icon: projects.chatboiLogo,
-        link: "https://chatboi.vercel.app/",
-        image: [projects.chatboi0, projects.chatboi1, projects.chatboi2, projects.chatboi3, projects.chatboi4],
-        
-    }
-   
-    
+    },
+    {
+        title: 'Helping Hands',
+        category: 'Archive',
+        tier: 'archive',
+        role: 'Full Stack Developer',
+        subtitle: 'Hackathon platform connecting people in need with helpers',
+        description: 'Social platform and job board to connect people who need help with people who can help—built as a React Native / Android hackathon project.',
+        icon: projects.helpingHandsLogo,
+        github: 'https://github.com/jainprashul/HelpingHand',
+        duration: '4 days (Hackathon)',
+        tags: ['Android', 'TypeScript', 'React Native', 'Postgres'],
+        image: [projects.helpingHands0, projects.helpingHands1, projects.helpingHands2, projects.helpingHands3, projects.helpingHands4],
+    },
 ]

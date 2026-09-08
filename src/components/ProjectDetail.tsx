@@ -1,76 +1,111 @@
 import style from './ProjectDetail.module.css';
-import { Project } from '@/constants/projects';
+import { Project, ProjectSection } from '@/constants/projects';
 
 type Props = {
     project: Project
 }
 
-const ProjectDetail = (props: Props) => {
+const ProjectDetail = ({ project }: Props) => {
+    const hasImages = project.image.length > 0
+
     return (
         <>
             <div className={style.projectDetail}>
                 <div className={style.meta}>
-                    <img className={style.icon} src={props.project.icon} alt={props.project.title} />
+                    <img className={style.icon} src={project.icon} alt={project.title} />
                     <div>
-                        <h1 className={style.title}>{props.project.title}</h1>
-                        <h5 className={style.category}>{props.project.category}</h5>
-
+                        <h1 className={style.title}>{project.title}</h1>
+                        {project.category && (
+                            <h5 className={style.category}>{project.category}</h5>
+                        )}
+                        {project.company && (
+                            <div className={style.company}>{project.company}</div>
+                        )}
                         <div className={style.tags}>
-                            {props.project.tags.map((tag, index) => (
-                                <span key={index}>{tag}</span>
+                            {project.tags.map((tag) => (
+                                <span key={tag}>{tag}</span>
                             ))}
                         </div>
                     </div>
                 </div>
-                <p className={style.subtitle}>{props.project.subtitle}</p>
+                {project.subtitle && (
+                    <p className={style.subtitle}>{project.subtitle}</p>
+                )}
+            </div>
+
+            <div className={style.links}>
+                {project.link && (
+                    <a className={style.linkBtn} href={project.link} target="_blank" rel="noreferrer">
+                        View Project
+                    </a>
+                )}
+                {project.github && (
+                    <a className={style.linkBtn} href={project.github} target="_blank" rel="noreferrer">
+                        GitHub
+                    </a>
+                )}
             </div>
 
             <h3 className={style.sectionTitle}>About the project</h3>
-            <div  className={style.description}>
-                {props.project.description}
-            </div>
+            <div className={style.description}>{project.description}</div>
 
-            <a className={style.link} href={props.project.link} target="_blank" rel="noreferrer">View Project</a>
+            {project.sections?.map((section) => (
+                <CaseStudySection key={section.title} section={section} />
+            ))}
 
-            <h3 className={style.sectionTitle}>Product Images</h3>
-
-            <div className={style.images}>
-                {props.project.image.map((image, index) => (
-                    <img className={style.image} key={index} src={image} alt="" />
-                ))}
-            </div>
+            {hasImages && (
+                <>
+                    <h3 className={style.sectionTitle}>Product Images</h3>
+                    <div className={style.images}>
+                        {project.image.map((image, index) => (
+                            <img className={style.image} key={index} src={image} alt="" />
+                        ))}
+                    </div>
+                </>
+            )}
 
             <h3 className={style.sectionTitle}>Specifications</h3>
-
             <div className={style.specs}>
                 <div className={style.spec}>
                     <div className={style.title}>Role</div>
-                    <div className={style.content}>Full Stack Developer</div>
+                    <div className={style.content}>{project.role ?? 'Full Stack Developer'}</div>
                 </div>
-                <div className={style.spec}>
-                    <div className={style.title}>Team Size</div>
-                    <div className={style.content}>1</div>
-                </div>
-
+                {project.company && (
+                    <div className={style.spec}>
+                        <div className={style.title}>Company</div>
+                        <div className={style.content}>{project.company}</div>
+                    </div>
+                )}
                 <div className={style.spec}>
                     <div className={style.title}>Duration</div>
-                    <div className={style.content}>{props.project.duration}</div>
+                    <div className={style.content}>{project.duration}</div>
                 </div>
-
-                <div className={style.spec}>
-                    <div className={style.title}>Status</div>
-                    <div className={style.content}>Completed</div>
-                </div>
-
                 <div className={style.spec}>
                     <div className={style.title}>Technologies</div>
-                    
-                        {props.project.tags.map((technology, index) => (
-                            <div className={style.content} key={index}>{technology} </div>
-                        ))}
-                    </div>
-                    </div>
-        
+                    {project.tags.map((technology) => (
+                        <div className={style.content} key={technology}>{technology}</div>
+                    ))}
+                </div>
+            </div>
+        </>
+    )
+}
+
+function CaseStudySection({ section }: { section: ProjectSection }) {
+    const items = Array.isArray(section.content) ? section.content : null
+
+    return (
+        <>
+            <h3 className={style.sectionTitle}>{section.title}</h3>
+            {items ? (
+                <ul className={style.sectionList}>
+                    {items.map((item) => (
+                        <li key={item}>{item}</li>
+                    ))}
+                </ul>
+            ) : (
+                <div className={style.description}>{section.content}</div>
+            )}
         </>
     )
 }
