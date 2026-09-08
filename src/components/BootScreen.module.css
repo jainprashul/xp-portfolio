@@ -1,0 +1,86 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+  animation: bootPulse 1.2s ease-in-out infinite;
+}
+
+.progressTrack {
+  width: min(220px, 60vw);
+  height: 4px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: var(--primary);
+  animation: bootProgress 1.2s ease-out forwards;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.65;
+}
+
+.fadeOut {
+  animation: bootFadeOut 0.25s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+  }
+
+  .progressBar {
+    animation: none;
+    width: 100%;
+  }
+
+  .fadeOut {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@keyframes bootPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes bootProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes bootFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

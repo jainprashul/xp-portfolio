@@ -66,3 +66,40 @@
         }
     }
 }
+
+.extras {
+    padding: 0.7rem;
+    border-top: 1px solid var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.extras .title {
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.toggleRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.extraBtn {
+    align-self: stretch;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    border: 1px solid var(--surface-3);
+    background: var(--surface-2);
+    color: inherit;
+    cursor: pointer;
+}
+
+.extraBtn:hover {
+    filter: brightness(1.08);
+}

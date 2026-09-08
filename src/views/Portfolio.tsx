@@ -1,25 +1,28 @@
-
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import { winMenu } from '../assets/asset'
 import ContextsProvider from '../components/context/ContextsProvider'
 import { useWindowSize } from '../hooks/useWindowSize'
 import Mobile from '../components/mobile'
+import BootScreen, { shouldShowBoot } from '../components/BootScreen'
 const Desktop = lazy(() => import('../components/Desktop'))
 const BottomNav = lazy(() => import('../components/BottomNav'))
 
 function Portfolio() {
-
   const { height, width } = useWindowSize()
-  const minResolution = width >= 1024 && height >= 680;
+  const minResolution = width >= 1024 && height >= 680
+  const [booting, setBooting] = useState(() => shouldShowBoot())
 
-  if (!minResolution) {
-    return <MobileView />
-  }
-
-  return (
+  const shell = !minResolution ? <MobileView /> : (
     <div className="App">
       <DesktopView />
     </div>
+  )
+
+  return (
+    <>
+      {booting && <BootScreen onDone={() => setBooting(false)} />}
+      {shell}
+    </>
   )
 }
 
@@ -27,11 +30,13 @@ export default Portfolio
 
 function DesktopView() {
   return (
-    <Suspense fallback={<>
-      <div className="loading">
-        <img className='icon' src={winMenu} alt="" />
-      </div>
-    </>}>
+    <Suspense
+      fallback={
+        <div className="loading">
+          <img className="icon" src={winMenu} alt="" />
+        </div>
+      }
+    >
       <ContextsProvider>
         <Desktop />
         <BottomNav />
@@ -41,36 +46,18 @@ function DesktopView() {
 }
 
 function MobileView() {
-
   const { height, width } = useWindowSize()
-
-  // if width is greater than height, then it's landscape mode
-  const isLandscape = width > height;
-
-
-
-  if (isLandscape) {
-    return <div className="App">
-      <div className="mobile">
-        <h5 className='title'>
-          This app is not compatible on your device. Please use a tablet or desktop device.
-        </h5>
-        <p className='subtitle'>
-          (Minimum resolution: 1024px x 720px)
-        </p>
-      </div>
-    </div>
-  }
-
+  const isLandscape = width > height
 
   return (
     <div className="App">
       <div className="mobile">
+        {isLandscape && (
+          <div className="landscapeBanner" role="status">
+            Rotate for the best experience — you can keep browsing in landscape.
+          </div>
+        )}
         <ContextsProvider>
-          {/* <img className='icon-rotate' src={rotate} alt="" />
-          <h5 className='title'>
-            Please rotate your device to landscape mode to view this app.
-          </h5> */}
           <Mobile />
         </ContextsProvider>
       </div>

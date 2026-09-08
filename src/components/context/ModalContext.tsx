@@ -1,64 +1,180 @@
-import React, { useRef } from 'react';
-import Modal from '../shared/Modal';
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import Modal from '../shared/Modal'
+import { playClick, playWindowClose, playWindowOpen } from '@/utils/sound'
+import { useWindowSize } from '@/hooks/useWindowSize'
+
+export type ModalMeta = {
+  filterTags?: string[]
+  initialSearch?: string
+}
 
 type ModalContextType = {
-    openModal: (title: string, content: React.ReactNode) => void;
-};
+  openModal: (title: string, content: React.ReactNode, meta?: ModalMeta) => void
+  closeModal: () => void
+  minimizeModal: () => void
+  restoreModal: () => void
+  toggleMaximize: () => void
+  isOpen: boolean
+  isMinimized: boolean
+  isMaximized: boolean
+  minimizedTitle: string | null
+  meta: ModalMeta | null
+}
 
-const modalContext = React.createContext<ModalContextType | null>(null);
-
+const modalContext = React.createContext<ModalContextType | null>(null)
 
 export const useModal = () => {
-    const context = React.useContext(modalContext);
-    if (!context) {
-        throw new Error('useModal must be used within a ModalProvider');
-    }
-    return context;
-};
+  const context = React.useContext(modalContext)
+  if (!context) {
+    throw new Error('useModal must be used within a ModalProvider')
+  }
+  return context
+}
 
 type Props = {
-    children: React.ReactNode;
-};
+  children: React.ReactNode
+}
+
+type HistoryEntry = {
+  title: string
+  content: React.ReactNode
+  meta: ModalMeta | null
+}
 
 const ModalProvider = ({ children }: Props) => {
-    const [modalOpen, setModalOpen] = React.useState(false);
-    const [modalTitle, setModalTitle] = React.useState('');
-    const [modalContent, setModalContent] = React.useState<React.ReactNode>(null);
+  const [visible, setVisible] = useState(false)
+  const [closing, setClosing] = useState(false)
+  const [minimized, setMinimized] = useState(false)
+  const [maximized, setMaximized] = useState(false)
+  const [modalTitle, setModalTitle] = useState('')
+  const [modalContent, setModalContent] = useState<React.ReactNode>(null)
+  const [meta, setMeta] = useState<ModalMeta | null>(null)
+  const history = useRef<HistoryEntry[]>([])
+  const [historyDepth, setHistoryDepth] = useState(0)
+  const { width } = useWindowSize()
+  const isMobile = width > 0 && width < 1024
 
-    const history = useRef<Record<string, unknown>[]>([]);
-    const goBack = () => {
-        if (history.current.length > 1) {
-            const previous = history.current.pop();
-            setModalTitle(previous?.title as string);
-            setModalContent(previous?.content as React.ReactNode);
-        }
-    };
+  const clearModal = useCallback(() => {
+    setVisible(false)
+    setClosing(false)
+    setMinimized(false)
+    setMaximized(false)
+    setModalTitle('')
+    setModalContent(null)
+    setMeta(null)
+    history.current = []
+    setHistoryDepth(0)
+  }, [])
 
-    const openModal = (title: string, content: React.ReactNode) => {
-        setModalOpen(true);
-        setModalTitle(title);
-        setModalContent(content);
-        history.current.push({ title: modalTitle, content: modalContent });
-    };
+  const goBack = useCallback(() => {
+    if (history.current.length > 1) {
+      history.current.pop()
+      const previous = history.current[history.current.length - 1]
+      if (!previous) return
+      setModalTitle(previous.title)
+      setModalContent(previous.content)
+      setMeta(previous.meta)
+      setHistoryDepth(history.current.length)
+      playClick()
+    }
+  }, [])
 
-    const closeModal = () => {
-        setModalOpen(false);
-        setModalTitle('');
-        setModalContent(null);
-        history.current = [];
-    };
+  const openModal = useCallback((title: string, content: React.ReactNode, nextMeta?: ModalMeta) => {
+    setClosing(false)
+    setMinimized(false)
+    setMaximized(false)
+    setVisible(true)
+    setModalTitle(title)
+    setModalContent(content)
+    setMeta(nextMeta ?? null)
+    history.current.push({ title, content, meta: nextMeta ?? null })
+    setHistoryDepth(history.current.length)
+    playWindowOpen()
+  }, [])
 
-    return (
-        <modalContext.Provider value={{ openModal }}>
-            {children}
-            <Modal open={modalOpen} onClose={closeModal} title={modalTitle} back={
-                history.current.length > 1} goBack={goBack}>
-                {modalContent}
-            </Modal>
-        </modalContext.Provider>
-    );
-};
+  const closeModal = useCallback(() => {
+    if (!visible && !minimized) return
+    if (minimized) {
+      playWindowClose()
+      clearModal()
+      return
+    }
+    playWindowClose()
+    setClosing(true)
+  }, [clearModal, minimized, visible])
 
-export default ModalProvider;
+  const onCloseAnimationEnd = useCallback(() => {
+    clearModal()
+  }, [clearModal])
 
+  const minimizeModal = useCallback(() => {
+    if (!visible) return
+    playClick()
+    setMinimized(true)
+    setVisible(false)
+    setClosing(false)
+  }, [visible])
 
+  const restoreModal = useCallback(() => {
+    if (!minimized && !modalContent) return
+    playWindowOpen()
+    setMinimized(false)
+    setClosing(false)
+    setVisible(true)
+  }, [minimized, modalContent])
+
+  const toggleMaximize = useCallback(() => {
+    playClick()
+    setMaximized((v) => !v)
+  }, [])
+
+  const value = useMemo<ModalContextType>(
+    () => ({
+      openModal,
+      closeModal,
+      minimizeModal,
+      restoreModal,
+      toggleMaximize,
+      isOpen: visible && !minimized,
+      isMinimized: minimized,
+      isMaximized: maximized,
+      minimizedTitle: minimized ? modalTitle : null,
+      meta,
+    }),
+    [
+      openModal,
+      closeModal,
+      minimizeModal,
+      restoreModal,
+      toggleMaximize,
+      visible,
+      minimized,
+      maximized,
+      modalTitle,
+      meta,
+    ],
+  )
+
+  return (
+    <modalContext.Provider value={value}>
+      {children}
+      <Modal
+        open={visible && !minimized}
+        closing={closing}
+        maximized={maximized || isMobile}
+        mobileSheet={isMobile}
+        onClose={closeModal}
+        onMinimize={isMobile ? undefined : minimizeModal}
+        onToggleMaximize={isMobile ? undefined : toggleMaximize}
+        onCloseAnimationEnd={onCloseAnimationEnd}
+        title={modalTitle}
+        back={historyDepth > 1}
+        goBack={goBack}
+      >
+        {modalContent}
+      </Modal>
+    </modalContext.Provider>
+  )
+}
+
+export default ModalProvider

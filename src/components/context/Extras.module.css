@@ -1,0 +1,90 @@
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12000;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  background: #111;
+  color: #9ef01a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid #9ef01a55;
+}
+
+.terminalOverlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+  background-size: 100% 3px, 4px 100%;
+  mix-blend-mode: multiply;
+  animation: staffFlash 8s ease-out forwards;
+}
+
+@keyframes staffFlash {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.bsod {
+  position: fixed;
+  inset: 0;
+  z-index: 13000;
+  background: #0078d7;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.bsodInner {
+  max-width: 36rem;
+}
+
+.bsodFace {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.bsodCode {
+  opacity: 0.85;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.bsodBtn {
+  margin-top: 1.5rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid #ffffffaa;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.bsodBtn:hover {
+  background: #ffffff22;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminalOverlay {
+    animation: none;
+    opacity: 0.5;
+  }
+}
