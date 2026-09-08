@@ -4,6 +4,62 @@
   gap: 1.5rem;
 }
 
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.search {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--surface-3);
+  background: var(--surface-2);
+  color: inherit;
+  font: inherit;
+}
+
+.clearBtn {
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--surface-2);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tagChip {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--surface-3);
+  background: transparent;
+  color: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.tagChipActive {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.empty {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
 .tier {
   display: flex;
   flex-direction: column;
@@ -45,88 +101,114 @@
 
 .projects {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
-
 }
 
 .projectCard {
-    background-color: transparent;
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 0.75rem;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  .icon {
+    width: 4rem;
+    height: 4rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  
-    .icon {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 10px;
-    }
-
-    .projectcard__title {
-      font-weight: 600;
-    }
-
-    .projectcard__tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: .4rem;
-      span {
-        display: inline-block;
-        padding: 0.2rem 0.5rem;
-        background-color: var(--surface-2);
-        font-size: 0.7rem;
-        border-radius: 5px;
-        &:first-child {
-          margin-left: 0;
-        }
-      }
-      
-    }  
-    
-    .projectcard__description {
-      font-size: 0.8rem;
-      color: #939393;
-    }
-    .projectcard__image {
-      width: 100%;
-      height: 350px;
-      overflow: hidden;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-
-      & > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
   }
 
-  .projectMeta {
+  .projectcard__title {
+    font-weight: 600;
+  }
+
+  .projectcard__tags {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: .5rem;    
+    margin-top: 0.4rem;
+    span {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      background-color: var(--surface-2);
+      font-size: 0.7rem;
+      border-radius: 5px;
+    }
   }
 
-  @media screen and (max-width: 768px) {
-    .projects {
-      grid-template-columns: 1fr;
-    }
-
-    .projectCard {
-      .projectcard__image {
-        height: 150px;
-      }
-    }
-
-
-
-
-    
+  .projectcard__description {
+    font-size: 0.8rem;
+    color: #939393;
   }
-  
 
-/* Path: src/components/ProjectModel.module.css */
+  .projectcard__image {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 0.75rem;
+    opacity: 0;
+    transition: height 0.25s ease, opacity 0.25s ease;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .imagePreview {
+    height: 180px;
+    opacity: 1;
+  }
+}
+
+.projectCardFocused,
+.projectCard:focus-visible {
+  box-shadow: 0 0 0 2px var(--primary), 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.stagger {
+  animation: cardIn 0.35s ease-out both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.projectMeta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .projectCard .imagePreview {
+    height: 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger {
+    animation: none;
+  }
+
+  .projectCard .projectcard__image {
+    transition: none;
+  }
+}

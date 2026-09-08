@@ -1,0 +1,79 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 11000;
+  pointer-events: none;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+
+.spotlight {
+  position: absolute;
+  border-radius: 12px;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45);
+  border: 2px solid var(--primary);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tip {
+  position: absolute;
+  z-index: 2;
+  width: min(260px, calc(100vw - 24px));
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: var(--surface);
+  color: inherit;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.stepCount {
+  font-size: 0.7rem;
+  opacity: 0.65;
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.body {
+  margin: 0 0 0.85rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.skip,
+.next {
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.skip {
+  background: transparent;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.next {
+  background: var(--primary);
+  color: var(--on-primary);
+}

@@ -1,11 +1,12 @@
 .browser{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex: 1;
+    min-height: calc(80vh - 6rem);
     height: 100%;
     width: 100%;
-    margin-top: -2rem;
 }
 
 .browserBar{
@@ -13,6 +14,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0;
     width: 100%;
     height: 3rem;
     border-radius: 10px 10px 0 0;
@@ -29,6 +31,8 @@
 
 .browserBarAddress{
     display: flex;
+    flex: 1;
+    padding-right: 1rem;
   
     input{
         width: 100%;
@@ -46,23 +50,23 @@
 .browserContent{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: stretch;
+    flex: 1;
+    min-height: 0;
     width: 100%;
-    height: calc(80vh - 8rem);
-    overflow-y: scroll;
+    overflow: hidden;
     padding: 0;
-    gap: 1rem;
 
     &::-webkit-scrollbar {
         width: 0.5rem;
     }
 
-    iframe{
+    iframe,
+    embed{
         width: 100%;
         height: 100%;
         border: none;
-        border-radius: 10px;
         background-color: #fff;
     }
 }

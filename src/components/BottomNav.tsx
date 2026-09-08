@@ -1,12 +1,13 @@
 import style from './BottomNav.module.css'
 import Icon from './shared/Icon'
-import { calender, call1, contacts, edge, gmail, info, mail, message, winMenu } from '../assets/asset'
+import { calender, call1, contacts, edge, gmail, info, mail, message, project, winMenu } from '../assets/asset'
 import React from 'react'
 import { useModal } from './context/ModalContext'
 import Browser from './Browser'
 import { usePopover } from './context/PopOverContext'
 import About from './About'
 import WinMenu from './WinMenu'
+import ProjectList from './ProjectList'
 import useWeather from '@/hooks/useWeather'
 
 const BottomNav = () => {
@@ -59,8 +60,8 @@ function Menu() {
           icon={info}
           tooltip="About Me"
           tourId="tour-about"
-          onClick={(e) => {
-            openPopover(e.currentTarget, <About />)
+          onClick={() => {
+            openModal('About Me', <About />)
           }}
         />
         {isMinimized && minimizedTitle && (
@@ -114,35 +115,50 @@ export function MobileNav() {
   const { openModal } = useModal()
 
   return (
-    <div className={style.mobileNav}>
-      <Icon
-        icon={call1}
-        size={56}
-        onClick={() => {
-          window.open('tel:+919406707245')
-        }}
-      />
-      <Icon
-        icon={message}
-        size={50}
-        onClick={() => {
-          window.open('sms:+919406707245')
-        }}
-      />
-      <Icon
-        icon={gmail}
-        size={50}
-        onClick={() => {
-          window.open('mailto:jainprashul@gmail.com')
-        }}
-      />
-      <Icon
-        icon={contacts}
-        size={50}
-        onClick={() => {
-          openModal('About Me', <About />)
-        }}
-      />
-    </div>
+    <nav className={style.mobileDock} aria-label="Phone dock">
+      <div className={style.mobileDockInner}>
+        <Icon
+          icon={call1}
+          size={44}
+          tooltip="Call"
+          onClick={() => {
+            window.open('tel:+919406707245')
+          }}
+        />
+        <Icon
+          icon={message}
+          size={40}
+          tooltip="SMS"
+          onClick={() => {
+            window.open('sms:+919406707245')
+          }}
+        />
+        <Icon
+          icon={project}
+          size={40}
+          tooltip="Projects"
+          tourId="tour-projects-dock"
+          onClick={() => {
+            openModal('Projects', <ProjectList />)
+          }}
+        />
+        <Icon
+          icon={gmail}
+          size={40}
+          tooltip="Email"
+          onClick={() => {
+            window.open('mailto:jainprashul@gmail.com')
+          }}
+        />
+        <Icon
+          icon={contacts}
+          size={40}
+          tooltip="About"
+          onClick={() => {
+            openModal('About Me', <About />)
+          }}
+        />
+      </div>
+    </nav>
   )
 }

@@ -80,16 +80,25 @@ const ModalProvider = ({ children }: Props) => {
   }, [])
 
   const openModal = useCallback((title: string, content: React.ReactNode, nextMeta?: ModalMeta) => {
+    const isFreshWindow = history.current.length === 0
     setClosing(false)
     setMinimized(false)
-    setMaximized(false)
+    // In-window navigation (e.g. Projects → Project Detail) must keep maximize chrome.
+    // Only reset maximize when opening a brand-new modal.
+    if (isFreshWindow) {
+      setMaximized(false)
+    }
     setVisible(true)
     setModalTitle(title)
     setModalContent(content)
     setMeta(nextMeta ?? null)
     history.current.push({ title, content, meta: nextMeta ?? null })
     setHistoryDepth(history.current.length)
-    playWindowOpen()
+    if (isFreshWindow) {
+      playWindowOpen()
+    } else {
+      playClick()
+    }
   }, [])
 
   const closeModal = useCallback(() => {
@@ -161,7 +170,7 @@ const ModalProvider = ({ children }: Props) => {
       <Modal
         open={visible && !minimized}
         closing={closing}
-        maximized={maximized || isMobile}
+        maximized={maximized && !isMobile}
         mobileSheet={isMobile}
         onClose={closeModal}
         onMinimize={isMobile ? undefined : minimizeModal}

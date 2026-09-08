@@ -71,25 +71,36 @@
 
 .modalContainer {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 70vw;
+  height: 80vh;
   min-height: 80vh;
   max-height: 85vh;
   background-color: var(--surface);
   border-radius: 6px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
+  overflow: hidden;
   will-change: transform;
 }
 
+.maximizedHost {
+  justify-content: stretch;
+  align-items: stretch;
+}
+
 .modalContainer.maximized {
-  max-width: 100vw;
-  width: 100vw;
-  min-height: calc(100vh - 60px);
-  max-height: calc(100vh - 60px);
-  height: calc(100vh - 60px);
+  max-width: none;
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   border-radius: 0;
   transform: none !important;
+  overflow: hidden;
 }
 
 .modalContainer.mobileSheet {
@@ -98,14 +109,33 @@
   min-height: 100dvh;
   max-height: 100dvh;
   height: 100dvh;
-  border-radius: 12px 12px 0 0;
-  animation: sheetUp 0.3s ease-out;
+  border-radius: 16px 16px 0 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  animation: sheetUp 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.modal.mobileSheetHost {
+  height: 100dvh;
+  align-items: flex-end;
+}
+
+.modal.mobileSheetHost .modalContainer.mobileSheet {
+  border-radius: 16px 16px 0 0;
+}
+
+.sheetHandle {
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+  background: #ffffff55;
+  margin: 0.45rem auto 0.15rem;
 }
 
 @keyframes sheetUp {
   from {
-    transform: translateY(12%);
-    opacity: 0.6;
+    transform: translateY(18%);
+    opacity: 0.5;
   }
   to {
     transform: translateY(0);
@@ -114,7 +144,22 @@
 }
 
 .modalContent {
+  flex: 1;
+  min-height: 0;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.modalContainer.maximized .modalContent {
+  padding-left: 6;
+  padding-right: 6;
+}
+
+.modalContainer.maximized .modalHeader {
+  margin-bottom: 0;
+  border-radius: 0;
 }
 
 .modalOverlay {
@@ -151,11 +196,12 @@
   position: sticky;
   top: 0;
   z-index: 1001;
+  flex: 0 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.35rem 0.5rem 0.35rem 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   backdrop-filter: blur(5px);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   background: color-mix(in srgb, var(--surface) 85%, transparent);

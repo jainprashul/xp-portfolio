@@ -1,44 +1,142 @@
-.weather{
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
 
-    .iconBox{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: 1rem;
-    }
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  padding-top: max(0.45rem, env(safe-area-inset-top, 0px));
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
 
-    .weatherIcon{
-        width: 5rem;
-        height: 5rem;
-    }
+.statusBrand {
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+}
 
-    .temp{
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 0.75rem 1rem;
+}
 
-    .city{
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
+.weather {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0 0.75rem;
+  padding: 12px;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
 
-    .weatherInfo{
-        display: flex;
-        margin-top: 1rem;
-        flex-direction: column;
-        text-align: right;
-        line-height: 1.5rem;
-        /* justify-content: center; */
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
+.iconBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.weatherIcon {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.temp {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.city {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.weatherInfo {
+  display: flex;
+  margin-top: 0.35rem;
+  flex-direction: column;
+  text-align: right;
+  line-height: 1.45rem;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+.home {
+  padding: 0.25rem 0 1rem;
+}
+
+.homeLabel {
+  margin: 0.85rem 0.35rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.appGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem 0.35rem;
+  padding: 0.35rem;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.quickRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0 0.15rem;
+}
+
+.quickChip {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.quickChip:active {
+  transform: scale(0.97);
+}
+
+@media screen and (orientation: landscape) and (max-height: 520px) {
+  .appGrid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .weather {
+    margin-bottom: 0.4rem;
+    padding: 8px 12px;
+  }
+
+  .weatherIcon {
+    width: 3rem;
+    height: 3rem;
+  }
 }

@@ -1,29 +1,25 @@
 import { G2048 } from '@/assets/asset'
 import style from './Gaming.module.css'
-
-const games = [
-    {
-        name : "2048",
-        icon : G2048,
-        route : "/2048game"
-    }
-]
+import { useModal } from './context/ModalContext'
+import Game2048 from '@/views/2048Game'
 
 const Gaming = () => {
+  const { openModal } = useModal()
+
   return (
     <div>
-        <h5 className={style.heading}>Gaming</h5>
-        <ul className={style.gamelist}>
-            {games.map((game, index) => (
-            <li key={index} className={style.gameitem} onClick={() => {
-                window.open(game.route)
-            }}>
-                <img src={game.icon
-                } alt={game.name} />
-                <span>{game.name}</span>
-            </li>
-            ))}
-        </ul>
+      <h5 className={style.heading}>Games</h5>
+      <ul className={style.gamelist}>
+        <li
+          className={style.gameitem}
+          onClick={() => {
+            openModal('2048', <Game2048 />)
+          }}
+        >
+          <img src={G2048} alt="2048" />
+          <span>2048</span>
+        </li>
+      </ul>
     </div>
   )
 }

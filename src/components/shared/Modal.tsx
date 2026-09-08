@@ -86,7 +86,7 @@ const Modal = ({
 
   const containerClass = [
     style.modalContainer,
-    maximized || mobileSheet ? style.maximized : '',
+    maximized && !mobileSheet ? style.maximized : '',
     mobileSheet ? style.mobileSheet : '',
   ]
     .filter(Boolean)
@@ -94,6 +94,8 @@ const Modal = ({
 
   const modalClass = [
     style.modal,
+    maximized && !mobileSheet ? style.maximizedHost : '',
+    mobileSheet ? style.mobileSheetHost : '',
     closing ? style.closing : style.opening,
     reducedMotion ? style.noMotion : '',
   ]
@@ -106,9 +108,12 @@ const Modal = ({
         className={`${style.modalOverlay} ${closing ? style.overlayClosing : ''}`}
         onClick={onClose}
       />
-      <div className={modalClass} onAnimationEnd={() => {
-        if (closing) onCloseAnimationEnd?.()
-      }}>
+      <div
+        className={modalClass}
+        onAnimationEnd={() => {
+          if (closing) onCloseAnimationEnd?.()
+        }}
+      >
         <div
           ref={containerRef}
           className={containerClass}
@@ -118,6 +123,7 @@ const Modal = ({
               : { transform: `translate(${offset.x}px, ${offset.y}px)` }
           }
         >
+          {mobileSheet && <div className={style.sheetHandle} aria-hidden />}
           <div
             className={style.modalHeader}
             onPointerDown={onPointerDown}

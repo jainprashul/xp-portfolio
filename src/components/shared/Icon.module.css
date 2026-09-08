@@ -75,5 +75,23 @@
     .shortcut {
         opacity: 0;
     }
+
+    .icon {
+        margin: 0;
+        padding: 4px;
+
+        &.ico span {
+            font-size: 0.68rem;
+            max-width: 4.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        &:hover.nav {
+            scale: 1;
+            transform: none;
+        }
+    }
 }
 

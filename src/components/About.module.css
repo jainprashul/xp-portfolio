@@ -1,23 +1,131 @@
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0.25rem 0.15rem 0.5rem;
+  min-height: auto;
+}
 
-    min-height: 50vh;
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--surface-3);
+  text-align: center;
+}
 
-
+@media screen and (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
 }
 
 .avatar {
-    width: 150px;
-    border-radius: 50%;
-    margin: 0 auto;
-    display: block;
-    object-fit: cover;
-    border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  border: 2px solid var(--surface-3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
-.borderBottom {
-    padding: 0 0 10px 0;
-    border-bottom: 1px solid var(--surface-3);
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.role {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #a6a5a5;
+}
+
+.tagline {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgb(159, 159, 159);
+  max-width: 36rem;
+}
+
+.section,
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.heading {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.text {
+  margin: 0;
+  margin-left: 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: rgb(159, 159, 159);
+  max-width: 42rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 0.35rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--surface-3);
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+.contactRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--surface-3);
+  background: var(--surface-2);
+  font-size: 0.85rem;
+  font-weight: 550;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.contactLink:hover {
+  border-color: var(--primary);
+  background: var(--surface-3);
 }
