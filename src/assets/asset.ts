@@ -9,6 +9,8 @@ import project from "./icons/project.svg";
 import vscode from './icons/vscode.svg';
 import steam from './icons/steam.svg';
 import github from './icons/github.svg';
+import opencode from './icons/opencode.svg';
+import highway9Logo from './icons/highway9-logo.svg';
 
 import android from './icons/android.svg';
 import css from './icons/css.svg';
@@ -87,6 +89,7 @@ import chatboi3 from './projects/chatboi3.png';
 import chatboi4 from './projects/chatboi4.png';
 
 
+
 import me from './me.jpeg';
 
 import wall0 from './wallpapers/wall0.jpg';
@@ -101,13 +104,16 @@ import wall5 from './wallpapers/wall5.jpg';
 export const mail = "https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
 // export const project = "https://img.icons8.com/?size=256&id=JJh41wIV10zF&format=png"
 
+
 export const projects = {
     billinLogo, billin1, billin2, billin3, billin4,
     helpingHandsLogo, helpingHands0, helpingHands1, helpingHands2, helpingHands3, helpingHands4,
     xpwatchLogo, xpwatch1, xpwatch2, xpwatch3, xpwatch4, xmobile0, xmobile1, xmobile2, xmobile3, xmobile4,
     portfolio1, portfolio2, portfolio3, portfolio4,
     glassLogo, glass1, glass2, glass3, glass4, glass5,
-    chatboiLogo, chatboi0, chatboi1, chatboi2, chatboi3, chatboi4,
+    chatboiLogo, chatboi0, chatboi1, chatboi2, chatboi3, chatboi4, 
+    opencode,
+    highway9Logo,
 }
 
 export const wallpapers = [

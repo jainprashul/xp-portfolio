@@ -32,7 +32,7 @@ const TechStack = () => {
         { name: 'AI Platforms', icon: 'https://img.icons8.com/color/48/000000/artificial-intelligence.png' },
         { name: 'Perf Profiling', icon: 'https://img.icons8.com/color/48/000000/speed.png' },
         { name: 'UI Systems', icon: 'https://img.icons8.com/color/48/000000/figma--v1.png' },
-        { name: 'CI Automation', icon: 'https://img.icons8.com/color/48/000000/continuous-integration.png' },
+        { name: 'CI Automation', icon: 'https://img.icons8.com/color/48/000000/travis-ci.png' },
     ]
 
     return (

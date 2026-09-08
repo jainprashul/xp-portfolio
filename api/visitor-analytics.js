@@ -1,29 +1,51 @@
 // Vercel Serverless Function for visitor analytics
-// This function proxies requests to ipapi.co and handles visit counting
+// Uses Vercel edge geolocation headers (reliable) instead of a third-party IP API
+
+function decodeHeader(value) {
+  if (!value || typeof value !== 'string') return null;
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function countryNameFromCode(code) {
+  if (!code || code === 'Unknown') return 'Unknown';
+  try {
+    return new Intl.DisplayNames(['en'], { type: 'region' }).of(code) || code;
+  } catch {
+    return code;
+  }
+}
+
+function getClientIp(request) {
+  const forwarded = request.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.length > 0) {
+    return forwarded.split(',')[0].trim();
+  }
+  return request.headers['x-real-ip'] || 'Unknown';
+}
 
 export default async function handler(request, response) {
   try {
-    // Fetch geolocation data from ipapi.co
-    const geoResponse = await fetch('https://ipapi.co/json/');
-    
-    if (!geoResponse.ok) {
-      throw new Error('Failed to fetch location data');
-    }
-    
-    const geoData = await geoResponse.json();
-    
-    // Return the geolocation data
-    // In a production app, you would store visit counts in a database
+    const country = decodeHeader(request.headers['x-vercel-ip-country']) || 'Unknown';
+    const city = decodeHeader(request.headers['x-vercel-ip-city']) || 'Unknown';
+    const region = decodeHeader(request.headers['x-vercel-ip-country-region']) || 'Unknown';
+
     return response.status(200).json({
-      ...geoData,
-      // Visit counting would be implemented with a real database in production
-      timestamp: new Date().toISOString()
+      ip: getClientIp(request),
+      country,
+      country_name: countryNameFromCode(country),
+      city,
+      region,
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Error in visitor-analytics function:', error);
     return response.status(500).json({
       error: 'Failed to fetch visitor data',
-      message: error.message
+      message: error instanceof Error ? error.message : 'Unknown error',
     });
   }
-} 
+}

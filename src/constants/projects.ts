@@ -1,4 +1,4 @@
-import { me, projects } from "@/assets/asset";
+import { projects } from "@/assets/asset";
 
 export type ProjectSection = {
     title: string;
@@ -31,7 +31,7 @@ export const Projects: Project[] = [
         role: 'Staff Engineer, R&D UX',
         subtitle: 'Enterprise AI assistant with principal auth, ACLs, and audit attribution',
         description: 'Modular AI Assistant architecture for a multi-tenant enterprise networking SaaS—JWT principal-based auth, ACL enablement, and via-assistant audit trails so operators can use AI safely inside production workflows.',
-        icon: me,
+        icon: projects.highway9Logo,
         image: [],
         tags: ['TypeScript', 'React', 'Go', 'AI Systems', 'JWT/Auth', 'ACLs', 'Kubernetes'],
         duration: 'Ongoing · Highway9',
@@ -63,7 +63,7 @@ export const Projects: Project[] = [
         role: 'Staff Engineer, R&D UX',
         subtitle: 'Helm charts and live cluster state as interactive dependency graphs',
         description: 'Infrastructure reasoning tools that turn Helm chart configs and live Kubernetes cluster state into interactive system graphs so operators can debug complex deployments faster.',
-        icon: me,
+        icon: projects.highway9Logo,
         image: [],
         tags: ['React', 'TypeScript', 'Go', 'Kubernetes', 'Helm', 'Graph Visualization'],
         duration: 'Ongoing · Highway9',
@@ -94,7 +94,7 @@ export const Projects: Project[] = [
         role: 'Staff Engineer, R&D UX',
         subtitle: 'Cluster, node-pool, storage UX with page-scoped operator Cloud Shell',
         description: 'Operator-facing infrastructure management surfaces—clusters, node pools, storage, app catalog, live metrics—plus a resilient Cloud Shell with context separation and WebSocket connection lifecycle management.',
-        icon: me,
+        icon: projects.highway9Logo,
         image: [],
         tags: ['React', 'WebSockets', 'xterm.js', 'Kubernetes', 'Redux', 'Edge Hardware'],
         duration: 'Ongoing · Highway9',
@@ -125,7 +125,7 @@ export const Projects: Project[] = [
         role: 'Staff Engineer, R&D UX',
         subtitle: 'WebSocket sync, Maps teardown, and main-thread performance under load',
         description: 'Hardened high-frequency SaaS performance: shallow-update socket patch paths, Google Maps teardown leak fixes, lazy-loaded map/graph widgets, and Highcharts redraw cleanup.',
-        icon: me,
+        icon: projects.highway9Logo,
         image: [],
         tags: ['Performance Profiling', 'WebSockets', 'Google Maps API', 'React', 'Highcharts'],
         duration: 'Ongoing · Highway9',
@@ -156,7 +156,7 @@ export const Projects: Project[] = [
         role: 'Staff Engineer / Open Source',
         subtitle: 'AI code-review CI on self-hosted runners with structured review contracts',
         description: 'Automated AI review workflow on self-hosted GitHub runners with structured review-json contracts, fuzzy deduplication, resolved-thread suppression, safer publish permissions, and semantic repo indexing.',
-        icon: me,
+        icon: projects.opencode,
         image: [],
         github: 'https://github.com/jainprashul/opencode-semantic-search',
         tags: ['GitHub Actions', 'TypeScript', 'Node.js', 'CI/CD', 'OpenCode'],
@@ -168,6 +168,32 @@ export const Projects: Project[] = [
                     'Consistent AI PR reviews on self-hosted runners',
                     'Structured review output with dedupe and thread suppression',
                     'Safer publish permissions for automated comments',
+                ],
+            },
+        ],
+    },
+    {
+        title: 'Oma Cast — Omarchy Status Bar Plugin',
+        category: 'Developer Tooling',
+        tier: 'flagship',
+        role: 'Open Source Maintainer',
+        subtitle: 'One-click screen mirroring from the Omarchy / Hyprland status bar',
+        description: 'QML bar widget and popup panel for Omarchy Linux that drives FluxCast—scan nearby TVs, pick a Hyprland monitor, and start or stop Miracast / DLNA / Chromecast mirroring with live session status and diagnostics.',
+        icon: 'https://raw.githubusercontent.com/jainprashul/oma-cast/master/product.jpg',
+        image: [
+            'https://raw.githubusercontent.com/jainprashul/oma-cast/master/product.jpg',
+            'https://raw.githubusercontent.com/jainprashul/oma-cast/master/infographic.png',
+        ],
+        github: 'https://github.com/jainprashul/oma-cast',
+        tags: ['QML', 'Node.js', 'Omarchy', 'Hyprland', 'Miracast', 'FluxCast'],
+        duration: '2026 · Open Source',
+        sections: [
+            {
+                title: 'What it solves',
+                content: [
+                    '1-click scan, protocol pick, monitor select, and cast start/stop from the status bar',
+                    'Multi-protocol: Miracast (WFD), DLNA fallback, experimental Chromecast via FluxCast',
+                    'Hardware-aware Hyprland monitor picker with live session status and FluxCast diagnostics',
                 ],
             },
         ],
@@ -201,19 +227,6 @@ export const Projects: Project[] = [
         github: 'https://github.com/jainprashul/billin-inc-v4',
         tags: ['React', 'TypeScript', 'Node.js', 'Express', 'PWA', 'GCP'],
         duration: '8 months',
-    },
-    {
-        title: 'OMA-Cast & Peer Media Sync',
-        category: 'Developer Tooling',
-        tier: 'flagship',
-        role: 'Full Stack Developer',
-        subtitle: 'Low-latency peer-to-peer media sync and casting utilities',
-        description: 'WebRTC and WebSocket peer-to-peer media synchronization and streaming utilities for low-latency multi-device playback.',
-        icon: me,
-        image: [],
-        github: 'https://github.com/jainprashul/oma-cast',
-        tags: ['WebRTC', 'WebSockets', 'TypeScript', 'P2P'],
-        duration: 'Side project',
     },
     {
         title: 'Order & Inventory Management System',
