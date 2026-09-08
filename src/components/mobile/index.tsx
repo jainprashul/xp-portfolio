@@ -2,12 +2,14 @@ import style from './Mobile.module.css'
 import { MobileNav } from '../BottomNav'
 import DesktopNav from '../DesktopNav'
 import useWeather from '@/hooks/useWeather'
+import AnalyticsWidget from '../shared/AnalyticsWidget'
 
 
 const Mobile = () => {
   return (
     <>
       <WeatherBox />
+      <AnalyticsWidget variant="mobile" />
       <DesktopNav />
       <MobileNav />
 

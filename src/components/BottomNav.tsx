@@ -98,7 +98,7 @@ export function MobileNav() {
         window.open('sms:+919406707245')
       }} />
       <Icon icon={gmail} size={50} onClick={() => {
-        window.open('mailto:jainprashul.now.sh')
+        window.open('mailto:jainprashul@gmail.com')
       }} />
       <Icon icon={contacts} size={50} onClick={() => {
 

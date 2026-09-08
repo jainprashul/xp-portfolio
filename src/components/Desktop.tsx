@@ -1,9 +1,11 @@
 import DesktopNav from './DesktopNav'
 import style from './Desktop.module.css'
+import AnalyticsWidget from './shared/AnalyticsWidget'
 
 const Desktop = () => {
   return (
     <div className={style.desktop}>
+      <AnalyticsWidget variant="desktop" />
       <DesktopNav />
       <Copyright />
     </div>

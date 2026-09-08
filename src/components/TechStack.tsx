@@ -3,160 +3,78 @@ import { vite } from '@/assets/asset'
 
 
 const TechStack = () => {
-
-    const languages500 = [
-        {
-            name: 'TypeScript',
-            icon: 'https://img.icons8.com/color/48/000000/typescript.png'
-        },
-        {
-            name: 'JavaScript',
-            icon: 'https://img.icons8.com/color/48/000000/javascript--v1.png'
-        },
-        {
-            name: "React",
-            icon: "https://img.icons8.com/color/48/000000/react-native.png"
-        },
-        {
-            name: 'Redux',
-            icon: 'https://img.icons8.com/color/48/000000/redux.png'
-        },
-        {
-            name: 'Node.js',
-            icon: 'https://img.icons8.com/color/48/000000/nodejs.png'
-        },
-        {
-            name: 'HTML',
-            icon: 'https://img.icons8.com/color/48/000000/html-5--v1.png'
-        },
-        {
-            name: 'CSS',
-            icon: 'https://img.icons8.com/color/48/000000/css3.png'
-        },
+    const coreStack = [
+        { name: 'TypeScript', icon: 'https://img.icons8.com/color/48/000000/typescript.png' },
+        { name: 'React', icon: 'https://img.icons8.com/color/48/000000/react-native.png' },
+        { name: 'Go', icon: 'https://img.icons8.com/color/48/000000/golang.png' },
+        { name: 'Node.js', icon: 'https://img.icons8.com/color/48/000000/nodejs.png' },
+        { name: 'Redux', icon: 'https://img.icons8.com/color/48/000000/redux.png' },
+        { name: 'Kubernetes', icon: 'https://img.icons8.com/color/48/000000/kubernetes.png' },
+        { name: 'Docker', icon: 'https://img.icons8.com/color/48/000000/docker.png' },
+        { name: 'GitHub Actions', icon: 'https://img.icons8.com/color/48/000000/github.png' },
+        { name: 'WebSockets', icon: 'https://img.icons8.com/color/48/000000/javascript--v1.png' },
+        { name: 'Helm', icon: 'https://img.icons8.com/color/48/000000/kubernetes.png' },
     ]
 
-    const languages100 = [
-        {   
-            name : "vite",
-            icon : vite
-        },
-        {
-            name : "Expo",
-            icon : 'https://img.icons8.com/color/48/000000/expo.png'
-        },
-        {
-            name: 'Flutter',
-            icon: 'https://img.icons8.com/color/48/000000/flutter.png'
-        },
-        {
-            name: "Android",
-            icon: "https://img.icons8.com/color/48/000000/android-os.png"
-        },
-        {
-            name: 'MongoDB',
-            icon: 'https://img.icons8.com/color/48/000000/mongodb.png'
-        },
-        {
-            name: 'Firebase',
-            icon: 'https://img.icons8.com/color/48/000000/firebase.png'
-        },
-        {
-            name: 'Python',
-            icon: 'https://img.icons8.com/color/48/000000/python--v1.png'
-        },
-        {
-            name: 'Go',
-            icon: 'https://img.icons8.com/color/48/000000/golang.png'
-        },
-        {
-            name: 'C#',
-            icon: 'https://img.icons8.com/color/48/000000/c-sharp-logo.png'
-        },
+    const backendCloud = [
+        { name: 'Python', icon: 'https://img.icons8.com/color/48/000000/python--v1.png' },
+        { name: 'PostgreSQL', icon: 'https://img.icons8.com/color/48/000000/postgreesql.png' },
+        { name: 'MongoDB', icon: 'https://img.icons8.com/color/48/000000/mongodb.png' },
+        { name: 'JWT / Auth', icon: 'https://img.icons8.com/color/48/000000/key-security.png' },
+        { name: 'REST APIs', icon: 'https://img.icons8.com/color/48/000000/api-settings.png' },
+        { name: 'GCP', icon: 'https://img.icons8.com/color/48/000000/google-cloud-platform.png' },
+        { name: 'AWS', icon: 'https://img.icons8.com/color/48/000000/amazon-web-services.png' },
+        { name: 'Vite', icon: vite },
     ]
 
-    const tools = [
-        {
-            name: 'VS Code',
-            icon: 'https://img.icons8.com/color/48/000000/visual-studio-code-2019.png'
-        },
-        {
-            name: 'Figma',
-            icon: 'https://img.icons8.com/color/48/000000/figma--v1.png'
-        },
-        {
-            name: 'Github',
-            icon: 'https://img.icons8.com/color/48/000000/github.png'
-        },
-        {
-            name: 'Git',
-            icon: 'https://img.icons8.com/color/48/000000/git.png'
-        },
-        {
-            name: 'Docker',
-            icon: 'https://img.icons8.com/color/48/000000/docker.png'
-        },
-        {
-            name: 'Android Studio',
-            icon: 'https://img.icons8.com/color/48/000000/android-studio--v2.png'
-        },
-        {
-            name: 'Google Cloud',
-            icon: 'https://img.icons8.com/color/48/000000/google-cloud-platform.png'
-        },
-
+    const systemsPlatform = [
+        { name: 'Infra Visualization', icon: 'https://img.icons8.com/color/48/000000/flow-chart.png' },
+        { name: 'AI Platforms', icon: 'https://img.icons8.com/color/48/000000/artificial-intelligence.png' },
+        { name: 'Perf Profiling', icon: 'https://img.icons8.com/color/48/000000/speed.png' },
+        { name: 'UI Systems', icon: 'https://img.icons8.com/color/48/000000/figma--v1.png' },
+        { name: 'CI Automation', icon: 'https://img.icons8.com/color/48/000000/continuous-integration.png' },
     ]
 
     return (
         <div>
             <h5 className={style.heading}>Languages and Frameworks</h5>
             <p className={style.text}>
-                <span>2023</span> was a year of change in tech stack. AI and ML were the buzzwords of the year.
-                I started learning about AI and ML and how they can be used to solve real world problems.
-                <br /> <br />
-                Secondly, my focus shifted towards mobile development. I started tinkering with React Native and Flutter. I also started reading about cloud computing and how it can be used to build scalable applications. As setting up and scaling the apps is quite cumbersome so started finding how it can be used to automate these processes as well.
+                I build systems that reduce complexity in data and infrastructure. My work focuses on turning static configurations, fragmented workflows, and raw telemetry into tools engineers can actually reason about—using React, TypeScript, Go, and Kubernetes.
             </p>
 
-            <h6 className={style.subtitle}>More than 500 hours of coding</h6>
+            <h6 className={style.subtitle}>Core daily stack</h6>
             <div className={style.languages}>
-                {languages500.map((language, index) => (
-                    <div className={style.language} key={index}>
-                        <img src={language.icon} alt={language.name} />
+                {coreStack.map((language) => (
+                    <div className={style.language} key={language.name}>
+                        <img src={language.icon} alt={language.name} width={48} height={48} />
                         <div>{language.name}</div>
                     </div>
                 ))}
             </div>
 
-            <h6 className={style.subtitle}>Familiar with</h6>
+            <h6 className={style.subtitle}>Backend, data &amp; cloud</h6>
             <div className={style.languages}>
-                {languages100.map((language, index) => (
-                    <div className={style.language} key={index}>
-                        <img src={language.icon} alt={language.name} width={48} />
+                {backendCloud.map((language) => (
+                    <div className={style.language} key={language.name}>
+                        <img src={language.icon} alt={language.name} width={48} height={48} />
                         <div>{language.name}</div>
                     </div>
                 ))}
             </div>
 
-            <h5 className={style.heading}>Tools and Platforms</h5>
+            <h5 className={style.heading}>Systems &amp; platform engineering</h5>
             <p className={style.text}>
-                I have used a lot of tools and platforms to build and deploy my projects. I have also used them to automate the deployment process. These helped me to focus more on the development part rather than the deployment part.
+                Day-to-day work sits at the boundary of UX, systems design, and automation—AI assistant platforms, Helm/k8s visualization, realtime SaaS performance, and CI tooling.
             </p>
 
             <div className={style.languages}>
-                {tools.map((tool, index) => (
-                    <div className={style.language} key={index}>
-                        <img src={tool.icon} alt={tool.name} />
+                {systemsPlatform.map((tool) => (
+                    <div className={style.language} key={tool.name}>
+                        <img src={tool.icon} alt={tool.name} width={48} height={48} />
                         <div>{tool.name}</div>
                     </div>
                 ))}
             </div>
-
-
-
-
-
-
-
-
         </div>
     )
 }

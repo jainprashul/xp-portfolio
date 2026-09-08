@@ -83,17 +83,40 @@
     margin-bottom: 1rem; 
 }
 
-.link {
-    position: absolute;
-    top: 5rem;
-    right: 1rem;
-    margin-top: 1rem;
-    
+.company {
+    font-size: 0.8rem;
+    color: #939393;
+    margin: 0.15rem 0;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0.5rem 0 0.5rem 2rem;
+}
+
+.linkBtn {
     color: var(--primary);
     cursor: pointer;
-    &:hover {
-        text-decoration: underline;
-    }
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.linkBtn:hover {
+    text-decoration: underline;
+}
+
+.sectionList {
+    margin: 0 0 1rem 2.5rem;
+    max-width: 80%;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0;
+}
+
+.sectionList li {
+    margin-bottom: 0.35rem;
 }
 
 .specs{
