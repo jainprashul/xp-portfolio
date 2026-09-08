@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import Icon from '../shared/Icon'
-import { game, github, linkedin, pdf, project, settings, steam, winMenu } from '@/assets/asset'
+import { game, github, linkedin, notepadIcon, pdf, project, settings, steam } from '@/assets/asset'
 import style from './Mobile.module.css'
 import { useModal } from '../context/ModalContext'
 import ProjectList from '../ProjectList'
@@ -10,16 +10,11 @@ import TechStack from '../TechStack'
 import Gaming from '../Gaming'
 import Notepad from '../Notepad'
 import About from '../About'
-import WinMenu from '../WinMenu'
-import { usePopover } from '../context/PopOverContext'
 
 const Wallpapers = lazy(() => import('../Wallpapers'))
 
-const NOTEPAD_ICON = 'https://img.icons8.com/color/48/000000/notepad.png'
-
 const MobileHome = () => {
   const { openModal } = useModal()
-  const { openPopover } = usePopover()
 
   return (
     <div className={style.home}>
@@ -53,7 +48,7 @@ const MobileHome = () => {
           onClick={() => openModal('Games', <Gaming />)}
         />
         <Icon
-          icon={NOTEPAD_ICON}
+          icon={notepadIcon}
           title="Notepad"
           size={52}
           tourId="tour-notepad"

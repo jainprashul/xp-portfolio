@@ -1,6 +1,7 @@
 import DesktopNav from './DesktopNav'
 import style from './Desktop.module.css'
 import AnalyticsWidget from './shared/AnalyticsWidget'
+import { indiaFlag } from '@/assets/asset'
 
 const Desktop = () => {
   return (
@@ -19,7 +20,7 @@ function Copyright() {
     <div className={style.copyRight}>
       <div>© {new Date().getFullYear()} - Prashul Jain <br /> <span>Make in India Initiative</span></div>
 
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="india flag" width={70} />
+      <img src={indiaFlag} alt="india flag" width={70} />
     </div>
   )
 

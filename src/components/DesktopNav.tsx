@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import Icon from './shared/Icon'
-import { fullscreen, game, github, linkedin, pdf, project, settings, steam } from '../assets/asset'
+import { fullscreen, game, github, linkedin, notepadIcon, pdf, project, settings, steam } from '../assets/asset'
 import style from './Desktop.module.css'
 import { useModal } from './context/ModalContext'
 import ProjectList from './ProjectList'
@@ -11,7 +11,7 @@ import Gaming from './Gaming'
 import Notepad from './Notepad'
 const Wallpapers = lazy(() => import('./Wallpapers'))
 
-const NOTEPAD_ICON = 'https://img.icons8.com/color/48/000000/notepad.png'
+
 
 const DesktopNav = () => {
   const { openModal } = useModal()
@@ -106,7 +106,7 @@ const DesktopNav = () => {
       />
 
       <Icon
-        icon={NOTEPAD_ICON}
+        icon={notepadIcon}
         title="Notepad"
         size={60}
         tourId="tour-notepad"

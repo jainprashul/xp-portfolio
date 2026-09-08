@@ -11,6 +11,7 @@ import steam from './icons/steam.svg';
 import github from './icons/github.svg';
 import opencode from './icons/opencode.svg';
 import highway9Logo from './icons/highway9-logo.svg';
+import indiaFlag from './icons/Flag_of_India.webp';
 
 import android from './icons/android.svg';
 import css from './icons/css.svg';
@@ -103,6 +104,7 @@ import wall5 from './wallpapers/wall5.jpg';
 // export const calender = "https://img.icons8.com/?size=48&id=WpQIVxfhhzqt&format=png"
 export const mail = "https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
 // export const project = "https://img.icons8.com/?size=256&id=JJh41wIV10zF&format=png"
+export const notepadIcon = 'https://img.icons8.com/color/48/000000/notepad.png'
 
 
 export const projects = {
@@ -135,5 +137,6 @@ export {
     me,
     call, insta, share, whatsapp,
     call1, chrome, contacts, gmail, message,
-    G2048, game
+    G2048, game,
+    indiaFlag,
 }
