@@ -12,7 +12,7 @@ import { useExtras } from './context/ExtrasContext'
 const WinMenu = () => {
   const { openModal } = useModal()
   const years = new Date().getFullYear() - 2019
-  const [soundOn, setSoundOn] = useState(false)
+  const [soundOn, setSoundOn] = useState(true)
   const { unlockStaffMode, triggerBsod } = useExtras()
 
   useEffect(() => {

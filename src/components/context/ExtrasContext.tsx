@@ -4,6 +4,7 @@ import style from './Extras.module.css'
 type ExtrasContextType = {
   unlockStaffMode: () => void
   triggerBsod: () => void
+  showToast: (message: string) => void
   staffMode: boolean
 }
 
@@ -77,9 +78,10 @@ const ExtrasProvider = ({ children }: Props) => {
     () => ({
       unlockStaffMode,
       triggerBsod,
+      showToast,
       staffMode,
     }),
-    [unlockStaffMode, triggerBsod, staffMode],
+    [unlockStaffMode, triggerBsod, showToast, staffMode],
   )
 
   return (

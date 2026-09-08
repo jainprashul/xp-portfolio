@@ -18,6 +18,8 @@ type ModalContextType = {
   isMinimized: boolean
   isMaximized: boolean
   minimizedTitle: string | null
+  /** Current window title when a modal is open or minimized */
+  windowTitle: string | null
   meta: ModalMeta | null
 }
 
@@ -148,6 +150,7 @@ const ModalProvider = ({ children }: Props) => {
       isMinimized: minimized,
       isMaximized: maximized,
       minimizedTitle: minimized ? modalTitle : null,
+      windowTitle: modalContent ? modalTitle : null,
       meta,
     }),
     [
@@ -160,6 +163,7 @@ const ModalProvider = ({ children }: Props) => {
       minimized,
       maximized,
       modalTitle,
+      modalContent,
       meta,
     ],
   )

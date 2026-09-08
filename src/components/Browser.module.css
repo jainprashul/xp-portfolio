@@ -1,76 +1,221 @@
-.browser{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
+.browser {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1;
+  min-height: calc(80vh - 6rem);
+  height: 100%;
+  width: 100%;
+}
+
+.browserBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.browserBarButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-left: 0.75rem;
+}
+
+.chromeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+.browserBarAddress {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.4rem;
+  padding-right: 0.75rem;
+
+  input {
     flex: 1;
-    min-height: calc(80vh - 6rem);
+    width: 100%;
+    height: 1.75rem;
+    border-radius: 5px;
+    border: 1px solid #c8c8c8;
+    outline: none;
+    padding: 0 0.5rem;
+    background: #fff;
+    color: #111;
+
+    &:focus {
+      border-color: #7a7a7a;
+    }
+  }
+}
+
+.loadingDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #2f6fed;
+  flex-shrink: 0;
+  animation: pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.goButton {
+  flex-shrink: 0;
+  height: 1.75rem;
+  padding: 0 0.65rem;
+  border: 1px solid #b0b0b0;
+  border-radius: 4px;
+  background: #f3f3f3;
+  color: #222;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+  &:hover {
+    background: #e8e8e8;
+  }
+}
+
+.bookmarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem 0.5rem;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.bookmarkChip {
+  height: 1.5rem;
+  padding: 0 0.55rem;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+  background: #f7f7f7;
+  color: #222;
+  font-size: 0.75rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #ececec;
+  }
+}
+
+.slowBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  padding: 0.4rem 0.75rem;
+  background: #fff8e1;
+  border-bottom: 1px solid #e6d9a8;
+  color: #5c4b12;
+  font-size: 0.8rem;
+}
+
+.bannerAction {
+  flex-shrink: 0;
+  height: 1.6rem;
+  padding: 0 0.55rem;
+  border: 1px solid #b0b0b0;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+  font-size: 0.75rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #f3f3f3;
+  }
+}
+
+.browserContent {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  iframe,
+  embed {
+    width: 100%;
     height: 100%;
-    width: 100%;
+    border: none;
+    background-color: #fff;
+  }
 }
 
-.browserBar{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-    width: 100%;
-    height: 3rem;
-    border-radius: 10px 10px 0 0;
+.blockedPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex: 1;
+  padding: 1.5rem;
+  text-align: center;
+  background: #f5f5f5;
+  color: #333;
+  font-size: 0.9rem;
+
+  p {
+    margin: 0;
+    max-width: 28rem;
+  }
 }
 
-.browserBarButtons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-left: 1rem;
+.blockedActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
 }
-
-.browserBarAddress{
-    display: flex;
-    flex: 1;
-    padding-right: 1rem;
-  
-    input{
-        width: 100%;
-        height: 1.5rem;
-        border-radius: 5px;
-        border: none;
-        outline: none;
-        padding-left: 0.5rem;
-        &:focus{
-            border: 1px solid #b1b0b0;
-        }
-    }
-}
-
-.browserContent{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
-    flex: 1;
-    min-height: 0;
-    width: 100%;
-    overflow: hidden;
-    padding: 0;
-
-    &::-webkit-scrollbar {
-        width: 0.5rem;
-    }
-
-    iframe,
-    embed{
-        width: 100%;
-        height: 100%;
-        border: none;
-        background-color: #fff;
-    }
-}
-
-
-
-

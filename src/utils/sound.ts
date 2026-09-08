@@ -14,9 +14,10 @@ function getCtx(): AudioContext | null {
 
 export function isSoundEnabled(): boolean {
   try {
-    return localStorage.getItem(STORAGE_KEY) === 'true'
+    // Default on when unset; only opt-out persists as 'false'
+    return localStorage.getItem(STORAGE_KEY) !== 'false'
   } catch {
-    return false
+    return true
   }
 }
 

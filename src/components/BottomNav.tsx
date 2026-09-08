@@ -1,7 +1,7 @@
 import style from './BottomNav.module.css'
 import Icon from './shared/Icon'
 import { calender, call1, contacts, edge, gmail, info, mail, message, project, winMenu } from '../assets/asset'
-import React from 'react'
+import React, { Suspense, lazy, useMemo, useRef } from 'react'
 import { useModal } from './context/ModalContext'
 import Browser from './Browser'
 import { usePopover } from './context/PopOverContext'
@@ -9,6 +9,11 @@ import About from './About'
 import WinMenu from './WinMenu'
 import ProjectList from './ProjectList'
 import useWeather from '@/hooks/useWeather'
+import { useContextMenu } from '@/hooks/useContextMenu'
+import ContextMenu, { type ContextMenuItem } from './shared/ContextMenu'
+import Loading from './shared/Loading'
+
+const Wallpapers = lazy(() => import('./Wallpapers'))
 
 const BottomNav = () => {
   return (
@@ -20,56 +25,197 @@ const BottomNav = () => {
   )
 }
 
+function openSettings(openModal: ReturnType<typeof useModal>['openModal']) {
+  openModal(
+    'Settings',
+    <Suspense fallback={<Loading />}>
+      <Wallpapers />
+    </Suspense>,
+  )
+}
+
 function Menu() {
-  const { openModal, isMinimized, minimizedTitle, restoreModal } = useModal()
+  const {
+    openModal,
+    closeModal,
+    minimizeModal,
+    restoreModal,
+    isMinimized,
+    isOpen,
+    minimizedTitle,
+    windowTitle,
+  } = useModal()
   const { openPopover } = usePopover()
+  const startAnchorRef = useRef<HTMLDivElement>(null)
+
+  const startMenu = useContextMenu()
+  const edgeMenu = useContextMenu()
+  const mailMenu = useContextMenu()
+  const calMenu = useContextMenu()
+  const aboutMenu = useContextMenu()
+  const chipMenu = useContextMenu()
+
+  const isEdgeActive = windowTitle === 'Edge - Browser'
+  const isCalActive = windowTitle === 'Calender - Schedule a meeting'
+  const isAboutActive = windowTitle === 'About Me'
+
+  const startItems = useMemo<ContextMenuItem[]>(
+    () => [
+      {
+        id: 'open-start',
+        label: 'Open',
+        onSelect: () => {
+          if (startAnchorRef.current) openPopover(startAnchorRef.current, <WinMenu />)
+        },
+      },
+      {
+        id: 'settings',
+        label: 'Settings',
+        onSelect: () => openSettings(openModal),
+      },
+    ],
+    [openModal, openPopover],
+  )
+
+  const edgeItems = useMemo<ContextMenuItem[]>(() => {
+    const items: ContextMenuItem[] = [
+      {
+        id: 'open',
+        label: 'Open',
+        onSelect: () => openModal('Edge - Browser', <Browser />),
+      },
+    ]
+    if (isEdgeActive) {
+      items.push({ id: 'win-sep', separator: true })
+      if (isMinimized) items.push({ id: 'restore', label: 'Restore', onSelect: restoreModal })
+      else if (isOpen) items.push({ id: 'minimize', label: 'Minimize', onSelect: minimizeModal })
+      items.push({ id: 'close', label: 'Close', onSelect: closeModal })
+    }
+    return items
+  }, [isEdgeActive, isMinimized, isOpen, openModal, closeModal, minimizeModal, restoreModal])
+
+  const mailItems = useMemo<ContextMenuItem[]>(
+    () => [
+      {
+        id: 'open',
+        label: 'Open',
+        onSelect: () => window.open('mailto:jainprashul@gmail.com'),
+      },
+    ],
+    [],
+  )
+
+  const calItems = useMemo<ContextMenuItem[]>(() => {
+    const items: ContextMenuItem[] = [
+      {
+        id: 'open',
+        label: 'Open',
+        onSelect: () =>
+          openModal('Calender - Schedule a meeting', <Browser website="https://calendly.com/jainprashul/30min" />),
+      },
+    ]
+    if (isCalActive) {
+      items.push({ id: 'win-sep', separator: true })
+      if (isMinimized) items.push({ id: 'restore', label: 'Restore', onSelect: restoreModal })
+      else if (isOpen) items.push({ id: 'minimize', label: 'Minimize', onSelect: minimizeModal })
+      items.push({ id: 'close', label: 'Close', onSelect: closeModal })
+    }
+    return items
+  }, [isCalActive, isMinimized, isOpen, openModal, closeModal, minimizeModal, restoreModal])
+
+  const aboutItems = useMemo<ContextMenuItem[]>(() => {
+    const items: ContextMenuItem[] = [
+      {
+        id: 'open',
+        label: 'Open',
+        onSelect: () => openModal('About Me', <About />),
+      },
+    ]
+    if (isAboutActive) {
+      items.push({ id: 'win-sep', separator: true })
+      if (isMinimized) items.push({ id: 'restore', label: 'Restore', onSelect: restoreModal })
+      else if (isOpen) items.push({ id: 'minimize', label: 'Minimize', onSelect: minimizeModal })
+      items.push({ id: 'close', label: 'Close', onSelect: closeModal })
+    }
+    return items
+  }, [isAboutActive, isMinimized, isOpen, openModal, closeModal, minimizeModal, restoreModal])
+
+  const chipItems = useMemo<ContextMenuItem[]>(
+    () => [
+      { id: 'restore', label: 'Restore', onSelect: restoreModal },
+      { id: 'close', label: 'Close', onSelect: closeModal },
+    ],
+    [restoreModal, closeModal],
+  )
 
   return (
     <>
       <div className={style.navIcons}>
-        <Icon
-          icon={winMenu}
-          tooltip="Show Menu"
-          tourId="tour-start"
-          onClick={(e) => {
-            openPopover(e.currentTarget, <WinMenu />)
-          }}
-        />
-        <Icon
-          icon={edge}
-          tooltip="Open Browser"
-          onClick={() => {
-            openModal('Edge - Browser', <Browser />)
-          }}
-        />
-        <Icon
-          icon={mail}
-          tooltip="Send me an Email"
-          onClick={() => {
-            window.open('mailto:jainprashul@gmail.com')
-          }}
-        />
-        <Icon
-          icon={calender}
-          tooltip="Schedule Meeting"
-          onClick={() => {
-            openModal('Calender - Schedule a meeting', <Browser website="https://calendly.com/jainprashul/30min" />)
-          }}
-        />
-        <Icon
-          icon={info}
-          tooltip="About Me"
-          tourId="tour-about"
-          onClick={() => {
-            openModal('About Me', <About />)
-          }}
-        />
+        <div ref={startAnchorRef} onContextMenu={startMenu.onContextMenu}>
+          <Icon
+            icon={winMenu}
+            tooltip="Show Menu"
+            tourId="tour-start"
+            onClick={(e) => {
+              openPopover(e.currentTarget, <WinMenu />)
+            }}
+          />
+        </div>
+        <div onContextMenu={edgeMenu.onContextMenu}>
+          <Icon
+            icon={edge}
+            tooltip="Open Browser"
+            onClick={() => {
+              openModal('Edge - Browser', <Browser />)
+            }}
+          />
+        </div>
+        <div onContextMenu={mailMenu.onContextMenu}>
+          <Icon
+            icon={mail}
+            tooltip="Send me an Email"
+            onClick={() => {
+              window.open('mailto:jainprashul@gmail.com')
+            }}
+          />
+        </div>
+        <div onContextMenu={calMenu.onContextMenu}>
+          <Icon
+            icon={calender}
+            tooltip="Schedule Meeting"
+            onClick={() => {
+              openModal('Calender - Schedule a meeting', <Browser website="https://calendly.com/jainprashul/30min" />)
+            }}
+          />
+        </div>
+        <div onContextMenu={aboutMenu.onContextMenu}>
+          <Icon
+            icon={info}
+            tooltip="About Me"
+            tourId="tour-about"
+            onClick={() => {
+              openModal('About Me', <About />)
+            }}
+          />
+        </div>
         {isMinimized && minimizedTitle && (
-          <button type="button" className={style.taskChip} onClick={restoreModal} title="Restore window">
+          <button
+            type="button"
+            className={style.taskChip}
+            onClick={restoreModal}
+            onContextMenu={chipMenu.onContextMenu}
+            title="Restore window"
+          >
             {minimizedTitle}
           </button>
         )}
       </div>
+      <ContextMenu {...startMenu.menuProps} items={startItems} />
+      <ContextMenu {...edgeMenu.menuProps} items={edgeItems} />
+      <ContextMenu {...mailMenu.menuProps} items={mailItems} />
+      <ContextMenu {...calMenu.menuProps} items={calItems} />
+      <ContextMenu {...aboutMenu.menuProps} items={aboutItems} />
+      <ContextMenu {...chipMenu.menuProps} items={chipItems} />
     </>
   )
 }
